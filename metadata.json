@@ -1,0 +1,6 @@
+{
+  "name": "Colormar",
+  "description": "Tienda premium de pinturas y acabados arquitectónicos con visualizador interactivo de color y calculadora de cobertura.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
