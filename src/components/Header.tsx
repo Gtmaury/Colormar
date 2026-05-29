@@ -42,6 +42,13 @@ export default function Header({ language, onLanguageChange, onScrollToSection }
             {t.navColors}
           </button>
           <button 
+            onClick={() => onScrollToSection('features')} 
+            className="text-sm font-semibold tracking-wide text-slate-600 hover:text-[#F97316] dark:text-slate-300 dark:hover:text-[#FACC15] transition-colors cursor-pointer"
+            id="nav-features"
+          >
+            {t.navFeatures}
+          </button>
+          <button 
             onClick={() => onScrollToSection('catalog')} 
             className="text-sm font-semibold tracking-wide text-slate-600 hover:text-[#F97316] dark:text-slate-300 dark:hover:text-[#FACC15] transition-colors cursor-pointer"
             id="nav-catalog"
@@ -54,13 +61,6 @@ export default function Header({ language, onLanguageChange, onScrollToSection }
             id="nav-calculator"
           >
             {t.navCalculator}
-          </button>
-          <button 
-            onClick={() => onScrollToSection('features')} 
-            className="text-sm font-semibold tracking-wide text-slate-600 hover:text-[#F97316] dark:text-slate-300 dark:hover:text-[#FACC15] transition-colors cursor-pointer"
-            id="nav-features"
-          >
-            {t.navFeatures}
           </button>
           <button 
             onClick={() => onScrollToSection('faq')} 
