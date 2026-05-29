@@ -33,7 +33,7 @@ export default function Header({ language, onLanguageChange, onScrollToSection }
         </div>
 
         {/* Desktop Bilingual Navigation Links */}
-        <nav className="hidden lg:flex items-center space-x-7">
+        <nav className="hidden lg:flex items-center space-x-4 xl:space-x-6">
           <button 
             onClick={() => onScrollToSection('visualizer')} 
             className="text-sm font-semibold tracking-wide text-slate-600 hover:text-[#F97316] dark:text-slate-300 dark:hover:text-[#FACC15] transition-colors cursor-pointer"
@@ -72,10 +72,10 @@ export default function Header({ language, onLanguageChange, onScrollToSection }
         </nav>
 
         {/* Global Controls & Translation Button */}
-        <div className="flex items-center space-x-3.5">
+        <div className="flex items-center space-x-2 xl:space-x-3">
           
-          {/* Active Consultation Quick Tag */}
-          <div className="hidden sm:flex items-center space-x-2 rounded-full border border-orange-500/10 bg-orange-550/5 dark:bg-orange-500/10 px-3 py-1 text-xs text-[#EA580C] dark:text-orange-400 font-medium">
+          {/* Active Consultation Quick Tag - Hidden on lg (standard laptop screen) to prevent overlap with center navigation */}
+          <div className="hidden sm:flex lg:hidden xl:flex items-center space-x-2 rounded-full border border-orange-500/10 bg-orange-550/5 dark:bg-orange-500/10 px-3 py-1 text-xs text-[#EA580C] dark:text-orange-400 font-medium">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
@@ -86,7 +86,7 @@ export default function Header({ language, onLanguageChange, onScrollToSection }
           {/* Core Language Switcher with active animation */}
           <button
             onClick={() => onLanguageChange(language === 'es' ? 'en' : 'es')}
-            className="relative inline-flex items-center space-x-1.5 rounded-full border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3.5 py-1.5 text-xs font-bold text-slate-700 dark:text-slate-200 shadow-sm hover:border-orange-500 dark:hover:border-orange-400 transition-all duration-200 cursor-pointer active:scale-95 group"
+            className="relative inline-flex items-center space-x-1.5 rounded-full border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-1.5 text-xs font-bold text-slate-700 dark:text-slate-200 shadow-sm hover:border-orange-500 dark:hover:border-orange-400 transition-all duration-200 cursor-pointer active:scale-95 group"
             id="lang-toggle-btn"
             title={t.langSub}
           >
