@@ -34,7 +34,7 @@ export default function Hero({ language, onScrollToSection, onSelectColor }: Her
     if (!container) return;
 
     let animationId: number;
-    const scrollSpeed = 0.55; // Pixels per frame
+    const scrollSpeed = 0.22; // Pixels per frame (slower, extremely smooth scroll)
 
     const scroll = () => {
       container.scrollLeft += scrollSpeed;
@@ -65,8 +65,8 @@ export default function Hero({ language, onScrollToSection, onSelectColor }: Her
         {/* Two-column responsive layout */}
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-center">
           
-          {/* Column 1: Copy Block */}
-          <div className="lg:col-span-7 flex flex-col justify-center text-left space-y-7">
+          {/* Column 1: Copy Block (occupying 5 columns) */}
+          <div className="lg:col-span-5 flex flex-col justify-center text-left space-y-7">
             
             {/* Promo banner badge */}
             <div className="inline-flex self-start items-center space-x-2 rounded-full border border-orange-500/20 bg-orange-50 dark:bg-orange-950/20 px-3.5 py-1.5 text-xs font-bold text-orange-600 dark:text-orange-400">
@@ -142,17 +142,23 @@ export default function Hero({ language, onScrollToSection, onSelectColor }: Her
 
           </div>
 
-          {/* Column 2: Auto-scrolling Showcase Product Carousel with soft glassmorphic background container */}
-          <div className="lg:col-span-5 flex justify-center w-full">
-            <div className="relative w-full max-w-sm rounded-2xl border border-slate-250 dark:border-slate-800 bg-white/40 dark:bg-slate-900/30 p-4 shadow-xl backdrop-blur-md overflow-hidden">
+          {/* Column 2: Auto-scrolling Showcase Product Carousel (occupying 7 columns to be larger, matching hero copy) */}
+          <div className="lg:col-span-7 flex justify-center w-full">
+            <div 
+              className="relative w-full max-w-2xl lg:max-w-none rounded-3xl border border-slate-200 dark:border-slate-800/80 bg-white/40 dark:bg-slate-900/30 p-5 lg:p-6 shadow-2xl backdrop-blur-md overflow-hidden"
+              style={{
+                WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 100%)',
+                maskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 100%)'
+              }}
+            >
               
-              {/* Fade overlays to blur left/right edges elegantly */}
-              <div className="absolute top-0 bottom-0 left-0 w-8 bg-gradient-to-r from-white/30 to-transparent dark:from-slate-900/20 pointer-events-none z-10" />
-              <div className="absolute top-0 bottom-0 right-0 w-8 bg-gradient-to-l from-white/30 to-transparent dark:from-slate-900/20 pointer-events-none z-10" />
+              {/* Fade overlays to blur left/right edges elegantly towards the title */}
+              <div className="absolute top-0 bottom-0 left-0 w-24 bg-gradient-to-r from-slate-50 via-slate-50/50 to-transparent dark:from-slate-950 dark:via-slate-950/50 pointer-events-none z-10" />
+              <div className="absolute top-0 bottom-0 right-0 w-8 bg-gradient-to-l from-slate-50/20 to-transparent dark:from-slate-950/20 pointer-events-none z-10" />
 
               {/* Tag header */}
               <div className="flex items-center justify-between mb-4 px-1">
-                <span className="text-xs font-mono font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest">
+                <span className="text-xs font-mono font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest pl-1">
                   {language === 'es' ? '• NUESTRO PORTAFOLIO' : '• OUR PORTFOLIO'}
                 </span>
                 <span className="relative flex h-2.5 w-2.5">
@@ -167,21 +173,21 @@ export default function Hero({ language, onScrollToSection, onSelectColor }: Her
                 className="w-full overflow-x-hidden no-scrollbar pb-1"
                 style={{ scrollbarWidth: 'none' }}
               >
-                <div className="grid grid-rows-2 grid-flow-col gap-3 w-max">
+                <div className="grid grid-rows-2 grid-flow-col gap-4 w-max">
                   {carouselProducts.map((p, index) => {
                     const productName = language === 'es' ? p.nameEs : p.nameEn;
 
                     return (
                       <div
                         key={`${p.id}-${index}`}
-                        className="w-28 sm:w-32 h-20 sm:h-22 overflow-hidden rounded-xl bg-transparent flex items-center justify-center relative"
+                        className="w-40 sm:w-56 h-28 sm:h-38 overflow-hidden rounded-2xl bg-transparent flex items-center justify-center relative"
                         title={productName}
                       >
                         <img
                           src={p.image}
                           alt={productName}
                           loading="lazy"
-                          className="h-full w-full object-cover rounded-xl shadow-md border border-slate-200/60 dark:border-slate-800"
+                          className="h-full w-full object-cover rounded-2xl shadow-md border border-slate-200/60 dark:border-slate-800"
                           referrerPolicy="no-referrer"
                         />
                       </div>
