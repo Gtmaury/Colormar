@@ -1,11 +1,11 @@
 /**
  * @license
- * SPDX-License-Identifier: Apache-2.0
+ * SPDX-License-Identifier: Apache-2.5
  */
 
 import React from 'react';
-import { Palette, Shield, Sparkles, ChevronRight, CheckCircle2 } from 'lucide-react';
-import { COLOR_PALETTE } from '../data';
+import { Palette, Sparkles, ChevronRight } from 'lucide-react';
+import { COLOR_PALETTE, PRODUCTS } from '../data';
 import { Language } from '../types';
 import { TRANSLATIONS } from './translations';
 
@@ -20,6 +20,37 @@ export default function Hero({ language, onScrollToSection, onSelectColor }: Her
 
   // Pick first 4 exotic toucan/tropical colors to display in the live hero picker
   const featuredColors = COLOR_PALETTE.slice(0, 4);
+
+  const scrollContainerRef = React.useRef<HTMLDivElement>(null);
+
+  // Duplicate the products array to ensure a long continuous flow
+  const carouselProducts = React.useMemo(() => {
+    return [...PRODUCTS, ...PRODUCTS, ...PRODUCTS, ...PRODUCTS];
+  }, []);
+
+  // Continuous smooth auto-scrolling logic (user cannot scroll it manually as overflow-x-hidden is set)
+  React.useEffect(() => {
+    const container = scrollContainerRef.current;
+    if (!container) return;
+
+    let animationId: number;
+    const scrollSpeed = 0.55; // Pixels per frame
+
+    const scroll = () => {
+      container.scrollLeft += scrollSpeed;
+      const maxScrollLeft = container.scrollWidth - container.clientWidth;
+      if (container.scrollLeft >= maxScrollLeft - 1) {
+        container.scrollLeft = 0;
+      }
+      animationId = requestAnimationFrame(scroll);
+    };
+
+    animationId = requestAnimationFrame(scroll);
+
+    return () => {
+      cancelAnimationFrame(animationId);
+    };
+  }, []);
 
   return (
     <section className="relative overflow-hidden pt-12 pb-20 md:pt-20 md:pb-28 bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900 transition-colors duration-300">
@@ -70,7 +101,7 @@ export default function Hero({ language, onScrollToSection, onSelectColor }: Her
                       onSelectColor(color.hex);
                       onScrollToSection('visualizer');
                     }}
-                    className="flex items-center space-x-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 hover:border-orange-500 dark:hover:border-orange-400 p-2.5 transition-all duration-150 cursor-pointer text-left active:scale-95 shadow-sm"
+                    className="flex items-center space-x-2.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 hover:border-orange-550 dark:hover:border-orange-450 p-2.5 transition-all duration-150 cursor-pointer text-left active:scale-95 shadow-sm"
                     title={language === 'es' ? `Cargar ${color.nameEs}` : `Load ${color.nameEn}`}
                   >
                     <span 
@@ -111,69 +142,51 @@ export default function Hero({ language, onScrollToSection, onSelectColor }: Her
 
           </div>
 
-          {/* Column 2: Interactive Paint Can mock / Colorful Visualizer Splash */}
-          <div className="lg:col-span-5 flex justify-center">
-            <div className="relative w-full max-w-sm sm:max-w-md rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 shadow-xl transition-all duration-300 hover:shadow-2xl">
+          {/* Column 2: Auto-scrolling Showcase Product Carousel with soft glassmorphic background container */}
+          <div className="lg:col-span-5 flex justify-center w-full">
+            <div className="relative w-full max-w-sm sm:max-w-md rounded-3xl border border-slate-250 dark:border-slate-800 bg-white/40 dark:bg-slate-900/30 p-5 shadow-2xl backdrop-blur-md overflow-hidden">
               
-              {/* Main design mockup rendering the classic "Colormar Paint Bucket" */}
-              <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-gradient-to-br from-indigo-950 via-slate-900 to-slate-950 flex flex-col justify-between p-6 text-white border border-slate-800 shadow-inner">
-                
-                {/* Paint Bucket handle style lines */}
-                <div className="absolute top-0 inset-x-0 h-4 bg-slate-800/80 border-b border-black/40 flex items-center justify-center">
-                  <span className="w-16 h-1 bg-slate-600 rounded-full" />
-                </div>
-                
-                {/* Decorative colored fluid paint overflow splash */}
-                <div className="absolute top-4 left-10 w-24 h-28 bg-[#F97316] rounded-b-3xl opacity-90 filter blur-[1px] animate-pulse" />
-                <div className="absolute top-4 left-24 w-12 h-16 bg-[#FACC15] rounded-b-2xl opacity-90 filter blur-[1px]" />
-                <div className="absolute top-4 left-32 w-16 h-36 bg-[#06B6D4] rounded-b-3xl opacity-80 filter blur-[1px]" />
+              {/* Fade overlays to blur left/right edges elegantly */}
+              <div className="absolute top-0 bottom-0 left-0 w-8 bg-gradient-to-r from-white/30 to-transparent dark:from-slate-900/20 pointer-events-none z-10" />
+              <div className="absolute top-0 bottom-0 right-0 w-8 bg-gradient-to-l from-white/30 to-transparent dark:from-slate-900/20 pointer-events-none z-10" />
 
-                {/* Brand label & toucan on bucket */}
-                <div className="z-10 mt-12 flex items-center space-x-2 bg-slate-900/80 border border-slate-800 backdrop-blur-sm self-start rounded-lg px-3 py-1.5 shadow-md">
-                  <span className="h-4.5 w-4.5 rounded-full bg-gradient-to-r from-[#FACC15] via-[#F97316] to-[#EF4444] inline-block" />
-                  <span className="font-mono text-xs font-bold tracking-widest text-[#FACC15]">COLORMAR® PREMIUM 10A</span>
-                </div>
-
-                {/* Giant elegant text label on bucket */}
-                <div className="z-10 text-left space-y-1">
-                  <div className="text-3xl font-black tracking-tighter text-slate-100 uppercase">
-                    {language === 'es' ? 'MÁXIMA' : 'MAXIMUM'}
-                  </div>
-                  <div className="text-4xl font-extrabold tracking-tight text-transparent bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text uppercase">
-                    {language === 'es' ? 'PROTECCIÓN' : 'PROTECTION'}
-                  </div>
-                  <div className="text-xs font-mono text-slate-400 uppercase tracking-widest">
-                    {language === 'es' ? 'Látex Acrílico Hidrófugo' : 'Hydrophobic Acrylic Latex'}
-                  </div>
-                </div>
-
-                {/* Mini bar on footer bucket */}
-                <div className="z-10 flex justify-between items-center bg-slate-950/60 border border-slate-800 px-3.5 py-2 rounded-lg backdrop-blur-xs">
-                  <div className="flex space-x-1">
-                    <span className="h-2 w-2 rounded-full bg-red-500" />
-                    <span className="h-2 w-2 rounded-full bg-orange-500" />
-                    <span className="h-2 w-2 rounded-full bg-yellow-500" />
-                    <span className="h-2 w-2 rounded-full bg-cyan-500" />
-                  </div>
-                  <span className="text-[10px] font-mono text-slate-300 font-bold">1 U.S. GALLON (3.785 L)</span>
-                </div>
+              {/* Tag header */}
+              <div className="flex items-center justify-between mb-4 px-1">
+                <span className="text-xs font-mono font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest">
+                  {language === 'es' ? '• NUESTRO PORTAFOLIO' : '• OUR PORTFOLIO'}
+                </span>
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-450 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-orange-500"></span>
+                </span>
               </div>
 
-              {/* Technical badges under the mockup bucket */}
-              <div className="grid grid-cols-2 gap-3.5 mt-5">
-                <div className="flex items-center space-x-2 border border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/40 p-2.5 rounded-xl text-left">
-                  <Shield className="h-5 w-5 text-[#F97316] flex-shrink-0" />
-                  <div>
-                    <h4 className="text-xs font-bold text-slate-900 dark:text-white leading-none">10 Años de Garantía</h4>
-                    <span className="text-[10px] font-medium text-slate-500 dark:text-slate-400">10-Year Active Guard</span>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-2 border border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/40 p-2.5 rounded-xl text-left">
-                  <CheckCircle2 className="h-5 w-5 text-[#06B6D4] flex-shrink-0" />
-                  <div>
-                    <h4 className="text-xs font-bold text-slate-900 dark:text-white leading-none">Cero VOC Holístico</h4>
-                    <span className="text-[10px] font-medium text-slate-500 dark:text-slate-400">Zero-VOC Breath-Safe</span>
-                  </div>
+              {/* Marquee area - overflow-x-hidden ensures the user cannot scroll/swipe it */}
+              <div 
+                ref={scrollContainerRef}
+                className="w-full overflow-x-hidden no-scrollbar pb-1"
+                style={{ scrollbarWidth: 'none' }}
+              >
+                <div className="grid grid-rows-2 grid-flow-col gap-4 w-max">
+                  {carouselProducts.map((p, index) => {
+                    const productName = language === 'es' ? p.nameEs : p.nameEn;
+
+                    return (
+                      <div
+                        key={`${p.id}-${index}`}
+                        className="w-36 sm:w-40 h-28 sm:h-32 overflow-hidden rounded-2xl bg-transparent flex items-center justify-center relative"
+                        title={productName}
+                      >
+                        <img
+                          src={p.image}
+                          alt={productName}
+                          loading="lazy"
+                          className="h-full w-full object-cover rounded-2xl shadow-md border border-slate-200/60 dark:border-slate-800"
+                          referrerPolicy="no-referrer"
+                        />
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
 

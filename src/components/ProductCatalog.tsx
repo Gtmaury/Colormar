@@ -4,7 +4,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { ShoppingBag, Star, Info, Check, Sparkles, X, ListFilter, ClipboardCheck, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ShoppingBag, Star, Sparkles, X, ClipboardCheck } from 'lucide-react';
 import { PRODUCTS } from '../data';
 import { Language, Product } from '../types';
 import { TRANSLATIONS } from './translations';
@@ -42,49 +42,14 @@ interface ProductCatalogProps {
 export default function ProductCatalog({ language, selectedColor, onScrollToSection }: ProductCatalogProps) {
   const t = TRANSLATIONS[language];
 
+  const [activeCategory, setActiveCategory] = useState<'all' | 'paints' | 'tools' | 'sealants' | 'accessories'>('all');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  
-  // Ref for product carousel scrolling
-  const scrollContainerRef = React.useRef<HTMLDivElement>(null);
-  const [isProductCarouselHovered, setIsProductCarouselHovered] = useState(false);
-
-  const scrollLeft = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: -340, behavior: 'smooth' });
-    }
-  };
-
-  const scrollRight = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollBy({ left: 340, behavior: 'smooth' });
-    }
-  };
-
-  // Autoplay for product carousel (pauses on hover)
-  useEffect(() => {
-    if (isProductCarouselHovered) return;
-    const container = scrollContainerRef.current;
-    if (!container) return;
-
-    const interval = setInterval(() => {
-      const maxScrollLeft = container.scrollWidth - container.clientWidth;
-      if (container.scrollLeft >= maxScrollLeft - 5) {
-        // Wrap around to start smoothly
-        container.scrollTo({ left: 0, behavior: 'smooth' });
-      } else {
-        // Scroll right by 320px
-        container.scrollBy({ left: 320, behavior: 'smooth' });
-      }
-    }, 4000); // Every 4 seconds
-
-    return () => clearInterval(interval);
-  }, [isProductCarouselHovered]);
   
   // Custom autoplay slideshow state
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isCarouselHovered, setIsCarouselHovered] = useState(false);
 
-  // Auto scroll effect
+  // Auto scroll effect for Inspiration Showcase
   useEffect(() => {
     if (isCarouselHovered) return;
     const interval = setInterval(() => {
@@ -105,8 +70,11 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
     color: string;
   } | null>(null);
 
-  // Show all products in the carousel
-  const filteredProducts = PRODUCTS;
+  // Filter items matching selected tab category
+  const filteredProducts = PRODUCTS.filter((p) => {
+    if (activeCategory === 'all') return true;
+    return p.category === activeCategory;
+  });
 
   const handleOpenQuoteModal = (product: Product) => {
     setSelectedProduct(product);
@@ -241,69 +209,125 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
           </div>
         </div>
 
-        {/* Responsive Grid Cards and layouts wrapped with side fade effects */}
-        <div 
-          className="relative w-full overflow-hidden group/product-carousel mb-10"
-          onMouseEnter={() => setIsProductCarouselHovered(true)}
-          onMouseLeave={() => setIsProductCarouselHovered(false)}
-        >
-          {/* Left Fade Overlay */}
-          <div className="absolute top-0 bottom-0 left-0 w-12 sm:w-28 bg-gradient-to-r from-white via-white/80 to-transparent dark:from-slate-950 dark:via-slate-950/80 pointer-events-none z-10" />
-          
-          {/* Right Fade Overlay */}
-          <div className="absolute top-0 bottom-0 right-0 w-12 sm:w-28 bg-gradient-to-l from-white via-white/80 to-transparent dark:from-slate-950 dark:via-slate-950/80 pointer-events-none z-10" />
+        {/* Categories Tab Selector buttons */}
+        <div className="flex flex-wrap justify-center gap-2.5 mb-12">
+          {[
+            { id: 'all', label: t.catCategoryAll },
+            { id: 'paints', label: t.catCategoryPaints },
+            { id: 'sealants', label: t.catCategorySealants },
+            { id: 'tools', label: t.catCategoryTools },
+            { id: 'accessories', label: t.catCategoryAccessories }
+          ].map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setActiveCategory(cat.id as any)}
+              className={`px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-150 cursor-pointer active:scale-95 ${
+                activeCategory === cat.id
+                  ? 'bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900 shadow-md border border-slate-900 dark:border-slate-100'
+                  : 'bg-slate-50 hover:bg-slate-100 dark:bg-slate-900 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-450 border border-slate-200 dark:border-slate-800'
+              }`}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
 
-          {/* Left Scroll Button */}
-          <button 
-            type="button"
-            onClick={scrollLeft}
-            className="absolute left-6 top-1/2 -translate-y-1/2 z-20 h-12 w-12 rounded-full border border-slate-200 dark:border-slate-800 bg-white/80 hover:bg-white dark:bg-slate-950/80 dark:hover:bg-slate-950 text-slate-800 dark:text-slate-200 flex items-center justify-center opacity-0 group-hover/product-carousel:opacity-100 duration-200 transition-all cursor-pointer backdrop-blur-md shadow-lg"
-            aria-label="Scroll Left"
-          >
-            <ChevronLeft className="h-6 w-6" />
-          </button>
+        {/* Responsive Static Grid of Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {filteredProducts.map((p) => {
+            const productName = language === 'es' ? p.nameEs : p.nameEn;
+            const pDescription = language === 'es' ? p.descriptionEs : p.descriptionEn;
+            const pUnit = language === 'es' ? p.unitEs : p.unitEn;
 
-          {/* Right Scroll Button */}
-          <button 
-            type="button"
-            onClick={scrollRight}
-            className="absolute right-6 top-1/2 -translate-y-1/2 z-20 h-12 w-12 rounded-full border border-slate-200 dark:border-slate-800 bg-white/80 hover:bg-white dark:bg-slate-950/80 dark:hover:bg-slate-950 text-slate-800 dark:text-slate-200 flex items-center justify-center opacity-0 group-hover/product-carousel:opacity-100 duration-200 transition-all cursor-pointer backdrop-blur-md shadow-lg"
-            aria-label="Scroll Right"
-          >
-            <ChevronRight className="h-6 w-6" />
-          </button>
+            return (
+              <div
+                key={p.id}
+                onClick={() => handleOpenQuoteModal(p)}
+                className="group flex flex-col justify-between bg-slate-50/50 dark:bg-slate-900/30 border border-slate-250 dark:border-slate-850 rounded-3xl overflow-hidden hover:shadow-xl dark:hover:bg-slate-900/60 hover:border-[#F97316] dark:hover:border-[#FACC15] transition-all duration-300 cursor-pointer text-left"
+                id={`cat-card-${p.id}`}
+              >
+                {/* Product illustration image with modern zoom hover effect */}
+                <div className="relative aspect-video w-full overflow-hidden bg-slate-100 dark:bg-slate-950">
+                  <img
+                    src={p.image}
+                    alt={productName}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    referrerPolicy="no-referrer"
+                  />
+                  {p.featured && (
+                    <span className="absolute top-3.5 left-3.5 bg-gradient-to-r from-red-500 to-orange-500 text-[9px] font-mono font-bold tracking-widest text-white py-1 px-3.5 rounded-full shadow-md uppercase">
+                      {t.catFeatured}
+                    </span>
+                  )}
+                  {/* Selected Color indicator circle for paints */}
+                  {p.category === 'paints' && (
+                    <div className="absolute top-3.5 right-3.5 bg-slate-950/85 border border-white/20 hover:scale-105 duration-100 text-white p-1.5 rounded-xl flex items-center space-x-1.5 shadow-md">
+                      <span className="h-3.5 w-3.5 block rounded-md shadow-inner" style={{ backgroundColor: selectedColor }} />
+                      <span className="text-[9px] font-mono font-bold pr-1.5 uppercase">{selectedColor}</span>
+                    </div>
+                  )}
+                </div>
 
-          {/* Scrolling area */}
-          <div 
-            ref={scrollContainerRef}
-            className="w-full overflow-x-auto snap-x snap-mandatory pb-8 no-scrollbar scroll-smooth" 
-            style={{ scrollbarWidth: 'none' }}
-          >
-            {/* PRODUCT CAROUSEL CARDS - Styled as rounded white cards to blend image backgrounds perfectly */}
-            <div className="grid grid-rows-2 grid-flow-col gap-6 md:gap-7 w-max px-12 sm:px-28">
-              {filteredProducts.map((p) => {
-                const productName = language === 'es' ? p.nameEs : p.nameEn;
+                {/* Product textual details */}
+                <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-5">
+                  
+                  <div className="space-y-2.5">
+                    {/* Star Rating Row */}
+                    <div className="flex items-center space-x-2 text-xs">
+                      <div className="flex items-center text-yellow-400">
+                        <Star className="h-3.5 w-3.5 fill-current" />
+                        <span className="font-extrabold ml-1 font-mono text-slate-800 dark:text-slate-200">{p.rating}</span>
+                      </div>
+                      <span className="text-slate-400 font-semibold">•</span>
+                      <span className="text-slate-400 font-bold">{p.reviewsCount} {t.catReviews}</span>
+                    </div>
 
-                return (
-                  <div
-                    key={p.id}
-                    onClick={() => handleOpenQuoteModal(p)}
-                    title={productName}
-                    className="group w-64 sm:w-72 h-56 sm:h-64 overflow-hidden rounded-3xl bg-transparent hover:scale-[1.03] transition-all duration-300 snap-start cursor-pointer flex items-center justify-center relative"
-                    id={`cat-card-${p.id}`}
-                  >
-                    <img
-                      src={p.image}
-                      alt={productName}
-                      loading="lazy"
-                      className="h-full w-full object-cover rounded-3xl transition-transform duration-500 group-hover:scale-105 shadow-lg"
-                      referrerPolicy="no-referrer"
-                    />
+                    <h3 className="text-lg font-black text-slate-900 dark:text-white leading-tight group-hover:text-orange-650 dark:group-hover:text-yellow-400 transition-colors">
+                      {productName}
+                    </h3>
+
+                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-sans line-clamp-3">
+                      {pDescription}
+                    </p>
                   </div>
-                );
-              })}
-            </div>
-          </div>
+
+                  {/* Stock availability & price breakdown */}
+                  <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex justify-between items-end">
+                    <div className="text-left leading-none">
+                      <p className="text-[10px] uppercase font-mono font-bold text-slate-400 mb-1">
+                        {t.catPrice} ({pUnit}):
+                      </p>
+                      <p className="text-xl font-bold font-mono tracking-tight text-slate-900 dark:text-white">
+                        ${p.price.toFixed(2)}
+                      </p>
+                    </div>
+
+                    <div className="text-right leading-none">
+                      <p className="text-[10px] uppercase font-mono font-bold text-slate-400 mb-1">
+                        {t.catStock}
+                      </p>
+                      <span className="text-xs font-mono font-bold text-slate-700 dark:text-slate-350">
+                        {p.stock} {t.catStockUnits}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Action trigger quote modal */}
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleOpenQuoteModal(p);
+                    }}
+                    className="w-full py-3 px-4.5 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-950 font-bold text-xs sm:text-sm uppercase tracking-wider hover:bg-orange-550 dark:hover:bg-[#FACC15] cursor-pointer transition-colors text-center active:scale-95"
+                  >
+                    {t.catBtnDetails}
+                  </button>
+
+                </div>
+              </div>
+            );
+          })}
         </div>
 
         {/* Modal Quotation Box popup overlay inside view frame - Font size scaled up */}
@@ -353,7 +377,7 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
                         .replace('{product}', successReceipt.productName)
                     }
                   </p>
-                  <p className="text-xs font-mono text-slate-450 font-semibold uppercase tracking-wider border-t border-slate-200/50 dark:border-slate-800/50 pt-3">
+                  <p className="text-xs font-mono text-slate-455 font-semibold uppercase tracking-wider border-t border-slate-200/50 dark:border-slate-800/50 pt-3">
                     Solicitud ID: COL-{Math.floor(1000 + Math.random() * 9000)}-{new Date().getFullYear()}
                   </p>
                   <button
