@@ -107,29 +107,29 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
   };
 
   return (
-    <section id="catalog" className="py-24 md:py-28 bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300 relative scroll-mt-6 border-b border-slate-200/60 dark:border-slate-800/60">
+    <section id="catalog" className="py-14 md:py-16 bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300 relative scroll-mt-6 border-b border-slate-200/60 dark:border-slate-800/60">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Header content section - Font size scaled up */}
-        <div className="text-center max-w-3xl mx-auto space-y-6 mb-16">
-          <div className="inline-flex items-center space-x-2 border border-orange-500/10 bg-orange-500/5 px-4 py-2 rounded-full text-xs md:text-sm text-[#EA580C] dark:text-orange-400 font-mono">
+        <div className="text-center max-w-3xl mx-auto space-y-4 mb-10">
+          <div className="inline-flex items-center space-x-2 border border-orange-500/10 bg-orange-500/5 px-3 py-1.5 rounded-full text-xs text-[#EA580C] dark:text-orange-400 font-mono">
             <ShoppingBag className="h-4 w-4" />
             <span className="uppercase font-bold tracking-widest">{language === 'es' ? 'Catálogo de Insumos y Pinturas' : 'Product & Materials Catalog'}</span>
           </div>
-          <h2 className="text-4xl font-black md:text-5xl lg:text-6xl tracking-tight leading-tight text-slate-900 dark:text-white">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl tracking-tight leading-tight text-slate-900 dark:text-white">
             {t.catTitle}
           </h2>
-          <h3 className="text-xl sm:text-2xl font-extrabold text-[#F97316] dark:text-orange-400 uppercase tracking-widest font-mono">
+          <h3 className="text-base sm:text-lg font-bold text-[#F97316] dark:text-orange-400 uppercase tracking-wider font-mono">
             {language === 'es' ? 'Nuestros productos' : 'Our Products'}
           </h3>
-          <p className="text-slate-655 dark:text-slate-400 text-base sm:text-lg md:text-xl leading-relaxed">
+          <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
             {t.catSubtitle}
           </p>
         </div>
 
         {/* Dynamic Showcase rotating slider carousel - Font size scaled up */}
         <div 
-          className="relative w-full h-80 sm:h-96 md:h-[500px] rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 shadow-xl group/carousel mb-20"
+          className="relative w-full h-64 sm:h-80 md:h-[350px] rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 shadow-lg group/carousel mb-12"
           onMouseEnter={() => setIsCarouselHovered(true)}
           onMouseLeave={() => setIsCarouselHovered(false)}
         >
@@ -157,15 +157,15 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/40 to-transparent" />
                 
                 {/* Floating caption content details - Font size scaled up */}
-                <div className="absolute bottom-0 inset-x-0 p-8 sm:p-12 text-left z-20 flex flex-col justify-end">
-                  <span className="inline-flex self-start items-center space-x-2 rounded-full border border-orange-550/20 bg-orange-500/15 px-4 py-1.5 text-xs font-mono tracking-widest uppercase text-[#EA580C] dark:text-orange-400 font-extrabold mb-4 shadow-md">
-                    <Sparkles className="h-3.5 w-3.5 animate-pulse text-orange-500" />
+                <div className="absolute bottom-0 inset-x-0 p-6 sm:p-8 text-left z-20 flex flex-col justify-end">
+                  <span className="inline-flex self-start items-center space-x-2 rounded-full border border-orange-500/20 bg-orange-500/15 px-3 py-1 text-[10px] font-mono tracking-widest uppercase text-[#EA580C] dark:text-orange-400 font-extrabold mb-3 shadow-md">
+                    <Sparkles className="h-3 w-3 animate-pulse text-orange-500" />
                     <span>{language === 'es' ? 'GALERÍA DE INSPIRACIÓN' : 'INSPIRATION SHOWCASE'}</span>
                   </span>
-                  <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-white tracking-tight drop-shadow-md mb-3 max-w-3xl leading-tight">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight drop-shadow-md mb-2 max-w-2xl leading-tight">
                     {title}
                   </h3>
-                  <p className="text-sm sm:text-base md:text-lg text-slate-200 drop-shadow-sm max-w-2xl font-sans font-medium line-clamp-2">
+                  <p className="text-xs sm:text-sm md:text-base text-slate-200 drop-shadow-sm max-w-xl font-sans font-medium line-clamp-2">
                     {desc}
                   </p>
                 </div>
@@ -177,7 +177,7 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
           <button 
             type="button"
             onClick={() => setCurrentSlide((prev) => (prev === 0 ? CAROUSEL_SLIDES.length - 1 : prev - 1))}
-            className="absolute left-6 top-1/2 -translate-y-1/2 z-20 h-12 w-12 rounded-full border border-white/10 bg-slate-950/40 hover:bg-slate-950/85 text-white flex items-center justify-center opacity-0 group-hover/carousel:opacity-100 duration-200 transition-all cursor-pointer backdrop-blur-md font-mono text-[18px] font-black"
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 h-9 w-9 rounded-full border border-white/10 bg-slate-950/40 hover:bg-slate-950/85 text-white flex items-center justify-center opacity-0 group-hover/carousel:opacity-100 duration-200 transition-all cursor-pointer backdrop-blur-md font-mono text-sm font-black"
             aria-label="Previous Slide"
           >
             ←
@@ -187,7 +187,7 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
           <button 
             type="button"
             onClick={() => setCurrentSlide((prev) => (prev + 1) % CAROUSEL_SLIDES.length)}
-            className="absolute right-6 top-1/2 -translate-y-1/2 z-20 h-12 w-12 rounded-full border border-white/10 bg-slate-950/40 hover:bg-slate-950/85 text-white flex items-center justify-center opacity-0 group-hover/carousel:opacity-100 duration-200 transition-all cursor-pointer backdrop-blur-md font-mono text-[18px] font-black"
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 h-9 w-9 rounded-full border border-white/10 bg-slate-950/40 hover:bg-slate-950/85 text-white flex items-center justify-center opacity-0 group-hover/carousel:opacity-100 duration-200 transition-all cursor-pointer backdrop-blur-md font-mono text-sm font-black"
             aria-label="Next Slide"
           >
             →
@@ -221,10 +221,10 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
             <button
               key={cat.id}
               onClick={() => setActiveCategory(cat.id as any)}
-              className={`px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-150 cursor-pointer active:scale-95 ${
+              className={`px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-150 cursor-pointer active:scale-95 ${
                 activeCategory === cat.id
                   ? 'bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900 shadow-md border border-slate-900 dark:border-slate-100'
-                  : 'bg-slate-50 hover:bg-slate-100 dark:bg-slate-900 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-450 border border-slate-200 dark:border-slate-800'
+                  : 'bg-slate-50 hover:bg-slate-100 dark:bg-slate-900 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-800'
               }`}
             >
               {cat.label}
@@ -243,7 +243,7 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
               <div
                 key={p.id}
                 onClick={() => handleOpenQuoteModal(p)}
-                className="group flex flex-col justify-between bg-slate-50/50 dark:bg-slate-900/30 border border-slate-250 dark:border-slate-850 rounded-3xl overflow-hidden hover:shadow-xl dark:hover:bg-slate-900/60 hover:border-[#F97316] dark:hover:border-[#FACC15] transition-all duration-300 cursor-pointer text-left"
+                className="group flex flex-col justify-between bg-slate-50/50 dark:bg-slate-900/30 border border-slate-250 dark:border-slate-850 rounded-2xl overflow-hidden hover:shadow-lg dark:hover:bg-slate-900/60 hover:border-[#F97316] dark:hover:border-[#FACC15] transition-all duration-300 cursor-pointer text-left"
                 id={`cat-card-${p.id}`}
               >
                 {/* Product illustration image with modern zoom hover effect */}
@@ -270,7 +270,7 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
                 </div>
 
                 {/* Product textual details */}
-                <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-5">
+                <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-4">
                   
                   <div className="space-y-2.5">
                     {/* Star Rating Row */}
@@ -283,22 +283,22 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
                       <span className="text-slate-400 font-bold">{p.reviewsCount} {t.catReviews}</span>
                     </div>
 
-                    <h3 className="text-lg font-black text-slate-900 dark:text-white leading-tight group-hover:text-orange-650 dark:group-hover:text-yellow-400 transition-colors">
+                    <h3 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white leading-tight group-hover:text-[#F97316] dark:group-hover:text-[#FACC15] transition-colors">
                       {productName}
                     </h3>
 
-                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-sans line-clamp-3">
+                    <p className="text-xs text-slate-500 dark:text-slate-400 leading-normal font-sans line-clamp-2">
                       {pDescription}
                     </p>
                   </div>
 
                   {/* Stock availability & price breakdown */}
-                  <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex justify-between items-end">
+                  <div className="pt-3 border-t border-slate-100 dark:border-slate-850 flex justify-between items-end">
                     <div className="text-left leading-none">
                       <p className="text-[10px] uppercase font-mono font-bold text-slate-400 mb-1">
                         {t.catPrice} ({pUnit}):
                       </p>
-                      <p className="text-xl font-bold font-mono tracking-tight text-slate-900 dark:text-white">
+                      <p className="text-base sm:text-lg font-bold font-mono tracking-tight text-slate-900 dark:text-white">
                         ${p.price.toFixed(2)}
                       </p>
                     </div>
@@ -319,7 +319,7 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
                       e.stopPropagation();
                       handleOpenQuoteModal(p);
                     }}
-                    className="w-full py-3 px-4.5 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-950 font-bold text-xs sm:text-sm uppercase tracking-wider hover:bg-orange-550 dark:hover:bg-[#FACC15] cursor-pointer transition-colors text-center active:scale-95"
+                    className="w-full py-2 px-3.5 rounded-lg bg-slate-900 text-white dark:bg-white dark:text-slate-950 font-bold text-xs uppercase tracking-wider hover:bg-[#F97316] dark:hover:bg-[#FACC15] cursor-pointer transition-colors text-center active:scale-95"
                   >
                     {t.catBtnDetails}
                   </button>
@@ -333,7 +333,7 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
         {/* Modal Quotation Box popup overlay inside view frame - Font size scaled up */}
         {selectedProduct && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-fade-in">
-            <div className="relative w-full max-w-lg bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 text-left shadow-2xl space-y-6">
+            <div className="relative w-full max-w-md bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 text-left shadow-2xl space-y-5">
               
               {/* Corner Close trigger */}
               <button
@@ -347,7 +347,7 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
               <div className="flex items-center space-x-3.5 border-b border-slate-150 dark:border-slate-800 pb-4">
                 <ClipboardCheck className="h-7 w-7 text-orange-500 animate-bounce" />
                 <div>
-                  <h3 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white leading-none">
+                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-none">
                     {t.catQuickShopTitle}
                   </h3>
                   <p className="text-xs text-slate-400 font-mono mt-2 font-bold uppercase tracking-wider">
@@ -510,3 +510,4 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
     </section>
   );
 }
+

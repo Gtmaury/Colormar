@@ -28,7 +28,7 @@ export default function Footer({ language }: FooterProps) {
   }, []);
 
   return (
-    <footer className="bg-slate-900 border-t border-slate-800 text-slate-400 py-14 transition-colors duration-300">
+    <footer className="bg-slate-900 border-t border-slate-800 text-slate-400 py-10 transition-colors duration-300">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Main 3-Column Layout */}
@@ -38,7 +38,7 @@ export default function Footer({ language }: FooterProps) {
           <div className="md:col-span-4 space-y-4 text-left">
             <ToucanLogo showText={false} className="h-10 w-auto sm:hidden" />
             <ToucanLogo showText={true} className="h-10 w-auto hidden sm:flex" />
-            <p className="text-xs sm:text-sm text-slate-405 leading-relaxed max-w-sm font-sans pt-2">
+            <p className="text-xs text-slate-400 leading-relaxed max-w-sm font-sans pt-2">
               {t.footDesc}
             </p>
             

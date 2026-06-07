@@ -75,7 +75,7 @@ export default function PaintCalculator({ language }: PaintCalculatorProps) {
   };
 
   return (
-    <section id="calculator" className="py-16 md:py-24 bg-slate-50 dark:bg-slate-900/50 text-slate-900 dark:text-slate-100 transition-colors duration-300 border-b border-slate-200/60 dark:border-slate-800/60">
+    <section id="calculator" className="py-12 md:py-16 bg-slate-50 dark:bg-slate-900/50 text-slate-900 dark:text-slate-100 transition-colors duration-300 border-b border-slate-200/60 dark:border-slate-800/60">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Title details */}
@@ -84,7 +84,7 @@ export default function PaintCalculator({ language }: PaintCalculatorProps) {
             <Calculator className="h-3.5 w-3.5" />
             <span className="uppercase font-bold tracking-widest">{language === 'es' ? 'Calculadora' : 'Calculator'}</span>
           </div>
-          <h2 className="text-3xl font-black md:text-4xl tracking-tight leading-none text-slate-900 dark:text-white">
+          <h2 className="text-2xl font-black md:text-3xl lg:text-4xl tracking-tight leading-none text-slate-900 dark:text-white">
             {t.calcTitle}
           </h2>
           <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
@@ -283,7 +283,7 @@ export default function PaintCalculator({ language }: PaintCalculatorProps) {
                   <Sparkles className="h-4 w-4 text-yellow-400" />
                   <span>{t.calcCansRecommended}</span>
                 </div>
-                <div className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+                <div className="text-xl sm:text-2xl font-black text-white tracking-tight">
                   {outputs.cansRecommended}{' '}
                   {outputs.cansRecommended === 1 ? t.gansSingle.toUpperCase() : t.gansPlural.toUpperCase()}
                 </div>
