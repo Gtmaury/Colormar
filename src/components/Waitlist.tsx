@@ -40,7 +40,7 @@ export default function Waitlist({ language, selectedColor }: WaitlistProps) {
   const complementary = getComplementaryColor(selectedColor);
 
   return (
-    <section id="consultation" className="py-14 md:py-16 bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 border-b border-slate-200/60 dark:border-slate-800/60 overflow-hidden relative scroll-mt-6">
+    <section id="consultation" className="relative overflow-hidden lg:h-[calc(100vh-72px)] lg:min-h-[550px] flex flex-col justify-center py-14 md:py-16 bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 border-b border-slate-200/60 dark:border-slate-800/60 overflow-hidden relative scroll-mt-6">
       
       {/* Decorative ambient background glows */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full bg-orange-500/5 blur-[150px] pointer-events-none dark:bg-orange-500/3" />
@@ -49,7 +49,7 @@ export default function Waitlist({ language, selectedColor }: WaitlistProps) {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center mb-12 space-y-4">
+        <div className="max-w-3xl mx-auto text-center mb-6 lg:mb-8 space-y-4">
           <div className="inline-flex items-center space-x-2 rounded-full border border-orange-500/20 bg-orange-50 dark:bg-orange-950/20 px-3 py-1.5 text-xs text-[#EA580C] dark:text-orange-400 font-bold">
             <Sparkles className="h-4 w-4" />
             <span className="uppercase font-mono tracking-widest">

@@ -100,11 +100,6 @@ export default function Footer({ language }: FooterProps) {
           <div>
             {t.footCopyright.replace('{year}', new Date().getFullYear().toString())}
           </div>
-          <div className="flex space-x-4 mt-3 sm:mt-0">
-            <span className="text-[10px] text-slate-500 font-bold bg-slate-950 px-2.5 py-1 rounded border border-slate-800">
-              V: 3.5.0-FLASH-RELEASE
-            </span>
-          </div>
         </div>
 
       </div>

@@ -21,43 +21,14 @@ export default function Hero({ language, onScrollToSection, onSelectColor }: Her
   // Pick first 4 exotic toucan/tropical colors to display in the live hero picker
   const featuredColors = COLOR_PALETTE.slice(0, 4);
 
-  const scrollContainerRef = React.useRef<HTMLDivElement>(null);
-
-  // Duplicate the products array to ensure a long continuous flow
+  // Duplicate the products array to ensure a long continuous flow (multiple of 3 items for perfect columns)
   const carouselProducts = React.useMemo(() => {
-    return [...PRODUCTS, ...PRODUCTS, ...PRODUCTS, ...PRODUCTS];
-  }, []);
-
-  // Continuous smooth auto-scrolling logic (user cannot scroll it manually as overflow-x-hidden is set)
-  React.useEffect(() => {
-    const container = scrollContainerRef.current;
-    if (!container) return;
-
-    let animationId: number;
-    const scrollSpeed = 0.25; // Pixels per frame (slower, extremely smooth scroll)
-    let scrollPos = 0;
-
-    const scroll = () => {
-      const maxScrollLeft = container.scrollWidth - container.clientWidth;
-      if (maxScrollLeft > 0) {
-        scrollPos += scrollSpeed;
-        if (scrollPos >= maxScrollLeft - 1) {
-          scrollPos = 0;
-        }
-        container.scrollLeft = Math.floor(scrollPos);
-      }
-      animationId = requestAnimationFrame(scroll);
-    };
-
-    animationId = requestAnimationFrame(scroll);
-
-    return () => {
-      cancelAnimationFrame(animationId);
-    };
+    const baseProducts = PRODUCTS.slice(0, 69);
+    return [...baseProducts, ...baseProducts];
   }, []);
 
   return (
-    <section className="relative overflow-hidden pt-4 pb-6 md:pt-6 md:pb-8 bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900 transition-colors duration-300">
+    <section className="relative overflow-hidden lg:h-[calc(100vh-72px)] lg:min-h-[550px] flex items-center justify-center pt-4 pb-6 md:pt-6 md:pb-8 bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900 transition-colors duration-300">
       
       {/* Dynamic colorful decorative mesh shadows inspired by toucan colors */}
       <div className="absolute top-1/6 left-[-10%] -z-10 h-72 w-72 rounded-full bg-orange-500/10 blur-[120px] dark:bg-orange-500/5" />
@@ -133,11 +104,10 @@ export default function Hero({ language, onScrollToSection, onSelectColor }: Her
 
               {/* Marquee area - overflow-x-hidden ensures the user cannot scroll/swipe it */}
               <div 
-                ref={scrollContainerRef}
                 className="w-full overflow-x-hidden no-scrollbar pb-1"
                 style={{ scrollbarWidth: 'none' }}
               >
-                <div className="grid grid-rows-3 grid-flow-col gap-3 w-max">
+                <div className="grid grid-rows-3 grid-flow-col gap-3 w-max animate-marquee-infinite">
                   {carouselProducts.map((p, index) => {
                     const productName = language === 'es' ? p.nameEs : p.nameEn;
 

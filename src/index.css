@@ -30,3 +30,20 @@
   background: #0f172a;
 }
 
+/* Infinite scrolling marquee */
+@keyframes marquee-horizontal {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% - 6px)); /* half width minus half gap (gap-3 is 12px) */
+  }
+}
+
+.animate-marquee-infinite {
+  animation: marquee-horizontal 45s linear infinite;
+}
+
+.animate-marquee-infinite:hover {
+  animation-play-state: paused;
+}

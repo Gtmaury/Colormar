@@ -22,11 +22,11 @@ export default function FAQ({ language }: FAQProps) {
   };
 
   return (
-    <section id="faq" className="py-12 md:py-16 bg-slate-50 dark:bg-slate-900/50 text-slate-900 dark:text-slate-100 scroll-mt-6 border-b border-slate-200/60 dark:border-slate-800/60 overflow-hidden relative">
+    <section id="faq" className="relative overflow-hidden lg:h-[calc(100vh-72px)] lg:min-h-[550px] flex flex-col justify-center py-12 md:py-16 bg-slate-50 dark:bg-slate-900/50 text-slate-900 dark:text-slate-100 scroll-mt-6 border-b border-slate-200/60 dark:border-slate-800/60 overflow-hidden relative">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         
         {/* Section Title */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <div className="text-center max-w-3xl mx-auto mb-6 lg:mb-8 space-y-4">
           <span className="text-xs font-mono tracking-widest text-[#F97316] uppercase font-bold bg-orange-50 dark:bg-orange-950/20 px-3.5 py-1.5 rounded-full border border-orange-500/20">
             {language === 'es' ? 'Centro de ayuda' : 'Help center'}
           </span>

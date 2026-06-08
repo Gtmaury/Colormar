@@ -62,11 +62,11 @@ export default function ColorVisualizer({
     : (language === 'es' ? 'Fórmula de Autor Personalizada' : 'Bespoke Custom Blend');
 
   return (
-    <section id="visualizer" className="py-12 md:py-16 bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300 border-b border-slate-200/60 dark:border-slate-800/60">
+    <section id="visualizer" className="relative overflow-hidden lg:h-[calc(100vh-72px)] lg:min-h-[650px] flex flex-col justify-center py-12 md:py-16 bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300 border-b border-slate-200/60 dark:border-slate-800/60">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Title details */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-12">
+        <div className="text-center max-w-3xl mx-auto space-y-4 mb-6 lg:mb-8">
           <div className="inline-flex items-center space-x-1 border border-orange-500/10 bg-orange-500/5 px-3 py-1 rounded-full text-xs text-[#EA580C] dark:text-orange-400 font-mono">
             <Eye className="h-3.5 w-3.5" />
             <span className="uppercase font-bold tracking-widest">{t.navColors}</span>
@@ -125,7 +125,7 @@ export default function ColorVisualizer({
             </div>
 
             {/* Room SVG Stage (Coloring the background wall dynamically) */}
-            <div className="relative overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 aspect-[4/3] shadow-md group max-w-sm md:max-w-md lg:max-w-lg mx-auto w-full">
+            <div className="relative overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 aspect-[4/3] shadow-md group max-w-sm md:max-w-md lg:max-w-[420px] mx-auto w-full">
               
               <svg 
                 className="absolute inset-0 w-full h-full"

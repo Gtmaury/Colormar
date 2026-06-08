@@ -63,7 +63,7 @@ export default function Features({ language }: FeaturesProps) {
   ];
 
   return (
-    <section id="features" className="py-14 md:py-16 bg-gradient-to-b from-slate-100 to-white dark:from-slate-900 dark:to-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300 border-b border-slate-200/60 dark:border-slate-800/60 relative scroll-mt-6">
+    <section id="features" className="relative overflow-hidden lg:h-[calc(100vh-72px)] lg:min-h-[550px] flex flex-col justify-center py-14 md:py-16 bg-gradient-to-b from-slate-100 to-white dark:from-slate-900 dark:to-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300 border-b border-slate-200/60 dark:border-slate-800/60 relative scroll-mt-6">
       
       {/* Soft decorative background spotlight matching the logo */}
       <div className="absolute top-1/2 right-0 -translate-y-1/2 h-80 w-85 rounded-full bg-orange-500/5 blur-[120px] pointer-events-none dark:bg-orange-500/3" />
@@ -72,7 +72,7 @@ export default function Features({ language }: FeaturesProps) {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center mb-12 space-y-4">
+        <div className="max-w-3xl mx-auto text-center mb-6 lg:mb-8 space-y-4">
           <span className="text-xs md:text-sm font-mono tracking-widest text-[#F97316] uppercase font-bold bg-orange-50 dark:bg-orange-950/20 px-3 py-1.5 rounded-full border border-orange-500/20">
             {language === 'es' ? 'Marcas y Servicios Especializados' : 'Specialized Brands & Services'}
           </span>
