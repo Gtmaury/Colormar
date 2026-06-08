@@ -8,7 +8,6 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import ColorVisualizer from './components/ColorVisualizer';
 import Features from './components/Features';
-import PaintCalculator from './components/PaintCalculator';
 import ProductCatalog from './components/ProductCatalog';
 import Waitlist from './components/Waitlist';
 import FAQ from './components/FAQ';
@@ -100,9 +99,6 @@ export default function App() {
 
             {/* Feature technical grids */}
             <Features language={language} />
-
-            {/* Coverage Materials Calculator */}
-            <PaintCalculator language={language} />
 
             {/* Custom lab color consultation trial */}
             <Waitlist

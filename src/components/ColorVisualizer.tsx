@@ -80,10 +80,10 @@ export default function ColorVisualizer({
         </div>
 
         {/* Workspace board: 2-column visualizer panel */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Column 1: Interactive Room rendering (SVG illustration) */}
-          <div className="lg:col-span-7 space-y-5">
+          <div className="lg:col-span-6 space-y-5">
             
             {/* Room Selector Tab pills */}
             <div className="space-y-2">
@@ -125,7 +125,7 @@ export default function ColorVisualizer({
             </div>
 
             {/* Room SVG Stage (Coloring the background wall dynamically) */}
-            <div className="relative overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 aspect-[4/3] shadow-md group">
+            <div className="relative overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 aspect-[4/3] shadow-md group max-w-sm md:max-w-md lg:max-w-lg mx-auto w-full">
               
               <svg 
                 className="absolute inset-0 w-full h-full"
@@ -300,7 +300,7 @@ export default function ColorVisualizer({
           </div>
 
           {/* Column 2: Swatch Selection Panel + Sliders Mixing Board */}
-          <div className="lg:col-span-5 space-y-6">
+          <div className="lg:col-span-6 space-y-6 max-w-sm md:max-w-md lg:max-w-none mx-auto w-full">
             
             {/* 1. Official Preset Swatches */}
             <div className="border border-slate-200 dark:border-slate-800 rounded-2xl p-5 bg-white dark:bg-slate-900 shadow-sm space-y-4">

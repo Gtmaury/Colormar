@@ -60,13 +60,7 @@ export default function Header({ language, onLanguageChange, onScrollToSection, 
           >
             {t.navCatalog}
           </button>
-          <button 
-            onClick={() => onScrollToSection('calculator')} 
-            className="text-sm font-semibold tracking-wide text-slate-600 hover:text-[#F97316] dark:text-slate-300 dark:hover:text-[#FACC15] transition-colors cursor-pointer"
-            id="nav-calculator"
-          >
-            {t.navCalculator}
-          </button>
+
           <button 
             onClick={() => onScrollToSection('faq')} 
             className="text-sm font-semibold tracking-wide text-slate-600 hover:text-[#F97316] dark:text-slate-300 dark:hover:text-[#FACC15] transition-colors cursor-pointer"
@@ -79,14 +73,7 @@ export default function Header({ language, onLanguageChange, onScrollToSection, 
         {/* Global Controls & Translation Button */}
         <div className="flex items-center space-x-2 xl:space-x-3">
           
-          {/* Active Consultation Quick Tag - Hidden on lg (standard laptop screen) to prevent overlap with center navigation */}
-          <div className="hidden sm:flex lg:hidden xl:flex items-center space-x-2 rounded-full border border-orange-500/10 bg-orange-550/5 dark:bg-orange-500/10 px-3 py-1 text-xs text-[#EA580C] dark:text-orange-400 font-medium">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
-            </span>
-            <span className="font-mono text-[10px] tracking-wider uppercase">Lab Abierto / Open Lab</span>
-          </div>
+
 
           {/* Core Language Switcher with active animation */}
           <button
