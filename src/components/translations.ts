@@ -24,7 +24,7 @@ export const TRANSLATIONS = {
     heroSubtitle: 'Descubre recubrimientos arquitectónicos de alta tecnología inspirados en los colores exóticos de la selva tropical. Brillo satín, durabilidad máxima de hasta 10 años y mezcla computarizada de precisión.',
     heroCtaVisualizer: 'Probar Colores en Línea',
     heroCtaCatalog: 'Explorar Catálogo',
-    heroBadgeText: 'Pintura Látex Lavable 10A • Distribuidores Autorizados',
+    heroBadgeText: 'Distribuidores Autorizados',
 
     // Color Visualizer Section
     visTitle: 'Visualizador Virtual de Ambientes',
@@ -155,7 +155,7 @@ export const TRANSLATIONS = {
     heroSubtitle: 'Discover high-tech architectural coatings inspired by exotic tropical rainforest hues. Maximum satin glow, durability of up to 10 years, and computer-precise color mixing system.',
     heroCtaVisualizer: 'Try Colors Online',
     heroCtaCatalog: 'Explore Catalog',
-    heroBadgeText: 'Scrubbable Latex Paint 10Yr • Authorized Dealers',
+    heroBadgeText: 'Authorized Distributors',
 
     // Color Visualizer Section
     visTitle: 'Virtual Space Color Visualizer',
