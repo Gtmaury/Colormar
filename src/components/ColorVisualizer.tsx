@@ -285,12 +285,12 @@ export default function ColorVisualizer({
                 <h4 className="text-xs font-mono font-bold text-slate-400 uppercase tracking-wide leading-none mb-1">
                   {language === 'es' ? 'MATIZ SELECCIONADO:' : 'SELECTED SHADE:'}
                 </h4>
-                <p className="text-sm font-bold text-slate-800 dark:text-slate-150">
-                  {activeColorName}
+                <p className="text-sm font-bold font-mono text-slate-800 dark:text-slate-150">
+                  {selectedColor}
                 </p>
               </div>
               <button
-                onClick={() => onTriggerQuote('Pintura Látex Super-Acrílica Premium', selectedColor, activeColorName)}
+                onClick={() => onTriggerQuote('Pintura Látex Super-Acrílica Premium', selectedColor, selectedColor)}
                 className="py-2.5 px-4 rounded-lg bg-slate-900 text-white hover:bg-[#F97316] dark:bg-white dark:text-slate-900 dark:hover:bg-[#FACC15] dark:hover:text-slate-950 text-xs font-bold uppercase tracking-wider transition-colors cursor-pointer active:scale-95"
               >
                 {t.visApplyToOrder}
@@ -322,7 +322,7 @@ export default function ColorVisualizer({
                           : 'border-slate-200 dark:border-slate-800 hover:border-slate-400'
                       }`}
                       style={{ backgroundColor: color.hex }}
-                      title={language === 'es' ? `${color.nameEs}: ${color.descriptionEs}` : `${color.nameEn}: ${color.descriptionEn}`}
+                      title={`${color.hex}: ${language === 'es' ? color.descriptionEs : color.descriptionEn}`}
                     >
                       {/* Active Checkmark overlay */}
                       {isActive && (
@@ -338,9 +338,9 @@ export default function ColorVisualizer({
                         </div>
                       )}
 
-                      {/* Title read-out inside swatch */}
-                      <span className="text-[10px] font-bold text-white bg-slate-950/80 px-1 py-0.5 rounded border border-white/5 line-clamp-1 break-all leading-none">
-                        {language === 'es' ? color.nameEs : color.nameEn}
+                      {/* HEX code read-out inside swatch */}
+                      <span className="text-[10px] font-mono font-bold text-white bg-slate-950/80 px-1 py-0.5 rounded border border-white/5 line-clamp-1 break-all leading-none">
+                        {color.hex}
                       </span>
                     </button>
                   );

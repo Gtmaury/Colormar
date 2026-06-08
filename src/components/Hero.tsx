@@ -34,15 +34,17 @@ export default function Hero({ language, onScrollToSection, onSelectColor }: Her
     if (!container) return;
 
     let animationId: number;
-    const scrollSpeed = 0.22; // Pixels per frame (slower, extremely smooth scroll)
+    const scrollSpeed = 0.25; // Pixels per frame (slower, extremely smooth scroll)
+    let scrollPos = 0;
 
     const scroll = () => {
       const maxScrollLeft = container.scrollWidth - container.clientWidth;
       if (maxScrollLeft > 0) {
-        container.scrollLeft += scrollSpeed;
-        if (container.scrollLeft >= maxScrollLeft - 1) {
-          container.scrollLeft = 0;
+        scrollPos += scrollSpeed;
+        if (scrollPos >= maxScrollLeft - 1) {
+          scrollPos = 0;
         }
+        container.scrollLeft = Math.floor(scrollPos);
       }
       animationId = requestAnimationFrame(scroll);
     };
