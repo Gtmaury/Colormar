@@ -292,18 +292,9 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
                     </p>
                   </div>
 
-                  {/* Stock availability & price breakdown */}
+                  {/* Stock availability layout (no prices as requested) */}
                   <div className="pt-3 border-t border-slate-100 dark:border-slate-850 flex justify-between items-end">
                     <div className="text-left leading-none">
-                      <p className="text-[10px] uppercase font-mono font-bold text-slate-400 mb-1">
-                        {t.catPrice} ({pUnit}):
-                      </p>
-                      <p className="text-base sm:text-lg font-bold font-mono tracking-tight text-slate-900 dark:text-white">
-                        ${p.price.toFixed(2)}
-                      </p>
-                    </div>
-
-                    <div className="text-right leading-none">
                       <p className="text-[10px] uppercase font-mono font-bold text-slate-400 mb-1">
                         {t.catStock}
                       </p>
@@ -457,13 +448,10 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
                     </div>
                   </div>
 
-                  {/* Quantity selector input field */}
+                  {/* Quantity selector input field (no price calculation) */}
                   <div className="space-y-1.5 text-left">
-                    <label className="text-xs sm:text-sm font-bold text-slate-500 dark:text-slate-400 flex justify-between">
-                      <span>{t.formUnitCount}</span>
-                      <span className="font-mono text-orange-600 dark:text-orange-400 font-extrabold">
-                        {(formQty * selectedProduct.price).toFixed(2)} USD (Est.)
-                      </span>
+                    <label className="text-xs sm:text-sm font-bold text-slate-500 dark:text-slate-400">
+                      {t.formUnitCount}
                     </label>
                     <div className="flex items-center space-x-2">
                       <button

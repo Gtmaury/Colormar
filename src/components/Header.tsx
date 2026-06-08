@@ -13,9 +13,10 @@ interface HeaderProps {
   language: Language;
   onLanguageChange: (lang: Language) => void;
   onScrollToSection: (id: string) => void;
+  currentView?: 'home' | 'catalog';
 }
 
-export default function Header({ language, onLanguageChange, onScrollToSection }: HeaderProps) {
+export default function Header({ language, onLanguageChange, onScrollToSection, currentView }: HeaderProps) {
   const t = TRANSLATIONS[language];
 
   return (
@@ -24,7 +25,7 @@ export default function Header({ language, onLanguageChange, onScrollToSection }
         
         {/* Brand with responsive custom SVG logo */}
         <div 
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} 
+          onClick={() => onScrollToSection('home')} 
           className="flex cursor-pointer items-center transition-transform hover:scale-[1.02]"
           id="header-logo"
         >
@@ -50,7 +51,11 @@ export default function Header({ language, onLanguageChange, onScrollToSection }
           </button>
           <button 
             onClick={() => onScrollToSection('catalog')} 
-            className="text-sm font-semibold tracking-wide text-slate-600 hover:text-[#F97316] dark:text-slate-300 dark:hover:text-[#FACC15] transition-colors cursor-pointer"
+            className={`text-sm font-bold tracking-wide transition-colors cursor-pointer ${
+              currentView === 'catalog'
+                ? 'text-[#F97316] dark:text-[#FACC15]'
+                : 'text-slate-600 hover:text-[#F97316] dark:text-slate-300 dark:hover:text-[#FACC15]'
+            }`}
             id="nav-catalog"
           >
             {t.navCatalog}
