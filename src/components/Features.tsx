@@ -42,7 +42,7 @@ export default function Features({ language }: FeaturesProps) {
   ];
 
   return (
-    <section id="features" className="relative overflow-hidden lg:h-[calc(100vh-72px)] lg:min-h-[550px] flex flex-col justify-center py-14 md:py-16 bg-gradient-to-b from-slate-100 to-white dark:from-slate-900 dark:to-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300 border-b border-slate-200/60 dark:border-slate-800/60 relative scroll-mt-6">
+    <section id="features" className="relative lg:min-h-[calc(100vh-72px)] flex flex-col justify-center py-14 md:py-16 bg-gradient-to-b from-slate-100 to-white dark:from-slate-900 dark:to-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300 border-b border-slate-200/60 dark:border-slate-800/60 relative scroll-mt-20">
       
       {/* Soft decorative background spotlight matching the logo */}
       <div className="absolute top-1/2 right-0 -translate-y-1/2 h-80 w-85 rounded-full bg-orange-500/5 blur-[120px] pointer-events-none dark:bg-orange-500/3" />

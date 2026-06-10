@@ -62,7 +62,7 @@ export default function ColorVisualizer({
     : (language === 'es' ? 'Fórmula de Autor Personalizada' : 'Bespoke Custom Blend');
 
   return (
-    <section id="visualizer" className="relative overflow-hidden lg:h-[calc(100vh-72px)] lg:min-h-[650px] flex flex-col justify-center py-12 md:py-16 bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300 border-b border-slate-200/60 dark:border-slate-800/60">
+    <section id="visualizer" className="relative lg:min-h-[calc(100vh-72px)] flex flex-col justify-center py-12 md:py-16 bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300 border-b border-slate-200/60 dark:border-slate-800/60 scroll-mt-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Title details */}

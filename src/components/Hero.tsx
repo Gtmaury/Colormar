@@ -28,7 +28,7 @@ export default function Hero({ language, onScrollToSection, onSelectColor }: Her
   }, []);
 
   return (
-    <section className="relative overflow-hidden lg:h-[calc(100vh-72px)] lg:min-h-[550px] flex items-center justify-center pt-4 pb-6 md:pt-6 md:pb-8 bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900 transition-colors duration-300">
+    <section className="relative lg:min-h-[calc(100vh-72px)] flex items-center justify-center pt-4 pb-6 md:pt-6 md:pb-8 bg-gradient-to-b from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900 transition-colors duration-300">
       
       {/* Dynamic colorful decorative mesh shadows inspired by toucan colors */}
       <div className="absolute top-1/6 left-[-10%] -z-10 h-72 w-72 rounded-full bg-orange-500/10 blur-[120px] dark:bg-orange-500/5" />

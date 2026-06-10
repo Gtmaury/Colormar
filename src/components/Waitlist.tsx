@@ -40,7 +40,7 @@ export default function Waitlist({ language, selectedColor }: WaitlistProps) {
   const complementary = getComplementaryColor(selectedColor);
 
   return (
-    <section id="consultation" className="relative overflow-hidden lg:h-[calc(100vh-72px)] lg:min-h-[550px] flex flex-col justify-center py-14 md:py-16 bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 border-b border-slate-200/60 dark:border-slate-800/60 overflow-hidden relative scroll-mt-6">
+    <section id="consultation" className="relative lg:min-h-[calc(100vh-72px)] flex flex-col justify-center py-14 md:py-16 bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 border-b border-slate-200/60 dark:border-slate-800/60 relative scroll-mt-20">
       
       {/* Decorative ambient background glows */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full bg-orange-500/5 blur-[150px] pointer-events-none dark:bg-orange-500/3" />

@@ -22,7 +22,7 @@ export default function FAQ({ language }: FAQProps) {
   };
 
   return (
-    <section id="faq" className="relative overflow-hidden lg:h-[calc(100vh-72px)] lg:min-h-[550px] flex flex-col justify-center py-12 md:py-16 bg-slate-50 dark:bg-slate-900/50 text-slate-900 dark:text-slate-100 scroll-mt-6 border-b border-slate-200/60 dark:border-slate-800/60 overflow-hidden relative">
+    <section id="faq" className="relative lg:min-h-[calc(100vh-72px)] flex flex-col justify-center py-12 md:py-16 bg-slate-50 dark:bg-slate-900/50 text-slate-900 dark:text-slate-100 scroll-mt-20 border-b border-slate-200/60 dark:border-slate-800/60">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         
         {/* Section Title */}
