@@ -7,10 +7,7 @@ import React from 'react';
 import { 
   Home,
   Car,
-  Paintbrush,
-  Layers,
-  ShieldCheck,
-  Sparkles
+  Paintbrush
 } from 'lucide-react';
 import { Language } from '../types';
 import { TRANSLATIONS } from './translations';
@@ -41,24 +38,6 @@ export default function Features({ language }: FeaturesProps) {
       colorClass: 'text-[#06B6D4] bg-[#06B6D4]/10 border-[#06B6D4]/20',
       title: t.feat3Title,
       desc: t.feat3Desc,
-    },
-    {
-      icon: Layers,
-      colorClass: 'text-[#EF4444] bg-[#EF4444]/10 border-[#EF4444]/20',
-      title: t.feat4Title,
-      desc: t.feat4Desc,
-    },
-    {
-      icon: ShieldCheck,
-      colorClass: 'text-indigo-500 bg-indigo-500/10 border-indigo-500/20',
-      title: t.feat5Title,
-      desc: t.feat5Desc,
-    },
-    {
-      icon: Sparkles,
-      colorClass: 'text-emerald-500 bg-emerald-500/10 border-emerald-500/20',
-      title: t.feat6Title,
-      desc: t.feat6Desc,
     },
   ];
 
