@@ -241,7 +241,7 @@ export default function PaintCalculator({ language }: PaintCalculatorProps) {
               </div>
 
               {/* Data list rows */}
-              <div className="space-y-4 font-mono text-xs text-slate-350">
+              <div className="space-y-4 font-mono text-xs text-slate-300">
                 
                 {/* Gross area row */}
                 <div className="flex justify-between items-center border-b border-slate-800/40 pb-2">
@@ -259,7 +259,7 @@ export default function PaintCalculator({ language }: PaintCalculatorProps) {
 
                 {/* Net Area row */}
                 <div className="flex justify-between items-center border-b border-slate-800/40 pb-2">
-                  <span className="text-slate-150 font-bold">{t.calcAreaNet}</span>
+                  <span className="text-slate-200 font-bold">{t.calcAreaNet}</span>
                   <span className="text-[#06B6D4] font-black text-base">{outputs.netArea} m²</span>
                 </div>
 

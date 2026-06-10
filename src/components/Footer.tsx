@@ -46,7 +46,7 @@ export default function Footer({ language }: FooterProps) {
             <div className="flex items-center space-x-2 text-[10px] font-mono text-slate-500 pt-3 border-t border-slate-800 max-w-xs">
               <Clock className="h-3.5 w-3.5 text-slate-500" />
               <span>CLOCK:</span>
-              <span className="text-slate-350 font-bold">{time || '00:00:00 UTC'}</span>
+              <span className="text-slate-300 font-bold">{time || '00:00:00 UTC'}</span>
             </div>
           </div>
 
@@ -80,7 +80,7 @@ export default function Footer({ language }: FooterProps) {
               </div>
               <div className="flex items-center space-x-2.5 text-xs">
                 <Phone className="h-4 w-4 text-slate-500" />
-                <span className="font-mono text-slate-350 font-bold">{t.footContactValue.split(' | ')[1]}</span>
+                <span className="font-mono text-slate-300 font-bold">{t.footContactValue.split(' | ')[1]}</span>
               </div>
             </div>
 

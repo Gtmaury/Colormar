@@ -51,7 +51,7 @@ export default function FAQ({ language }: FAQProps) {
                 className={`rounded-2xl border transition-all duration-300 ${
                   isOpen
                     ? 'border-orange-500/20 dark:border-orange-500/10 bg-white dark:bg-slate-900 shadow-md'
-                    : 'border-slate-205 bg-slate-100/50 hover:border-slate-350 dark:border-slate-800 dark:bg-slate-955/20 dark:hover:bg-slate-955/40'
+                    : 'border-slate-200 bg-slate-100/50 hover:border-slate-300 dark:border-slate-800 dark:bg-slate-950/20 dark:hover:bg-slate-950/40'
                 }`}
               >
                 {/* Accordion Trigger Title Button */}
@@ -62,7 +62,7 @@ export default function FAQ({ language }: FAQProps) {
                 >
                   <div className="flex items-center space-x-3.5 flex-1 pr-4">
                     <HelpCircle className={`h-5 w-5 flex-shrink-0 transition-colors ${isOpen ? 'text-[#F97316]' : 'text-slate-400 group-hover:text-slate-600 dark:group-hover:text-slate-300'}`} />
-                    <span className={`text-sm sm:text-base font-extrabold transition-colors leading-snug ${isOpen ? 'text-slate-900 dark:text-white font-black' : 'text-slate-750 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white'}`}>
+                    <span className={`text-sm sm:text-base font-extrabold transition-colors leading-snug ${isOpen ? 'text-slate-900 dark:text-white font-black' : 'text-slate-700 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white'}`}>
                       {questionText}
                     </span>
                   </div>

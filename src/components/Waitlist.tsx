@@ -69,7 +69,7 @@ export default function Waitlist({ language, selectedColor }: WaitlistProps) {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           
           {/* Column 1: Color Combinations */}
-          <div className="rounded-2xl border border-slate-200 dark:border-slate-855 bg-slate-50/70 dark:bg-slate-900/40 p-6 sm:p-7 shadow-md backdrop-blur-md flex flex-col justify-between">
+          <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/40 p-6 sm:p-7 shadow-md backdrop-blur-md flex flex-col justify-between">
             <div className="space-y-4">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-orange-500/10 text-orange-600 border border-orange-500/20 mb-4">
                 <Sparkles className="h-5 w-5" />
@@ -92,7 +92,7 @@ export default function Waitlist({ language, selectedColor }: WaitlistProps) {
           </div>
 
           {/* Column 2: Step-by-Step Guide on How to Paint */}
-          <div className="rounded-2xl border border-slate-200 dark:border-slate-855 bg-slate-50/70 dark:bg-slate-900/40 p-6 sm:p-7 shadow-md backdrop-blur-md flex flex-col justify-between border-t-4 border-t-orange-500">
+          <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/40 p-6 sm:p-7 shadow-md backdrop-blur-md flex flex-col justify-between border-t-4 border-t-orange-500">
             <div className="space-y-4">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-500/10 text-cyan-600 border border-cyan-500/20 mb-4">
                 <BookOpen className="h-5 w-5" />
@@ -115,7 +115,7 @@ export default function Waitlist({ language, selectedColor }: WaitlistProps) {
           </div>
 
           {/* Column 3: Our Premium In-Store Service */}
-          <div className="rounded-2xl border border-slate-200 dark:border-slate-850 bg-slate-50/70 dark:bg-slate-900/40 p-6 sm:p-7 shadow-md backdrop-blur-md flex flex-col justify-between">
+          <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/70 dark:bg-slate-900/40 p-6 sm:p-7 shadow-md backdrop-blur-md flex flex-col justify-between">
             <div className="space-y-4">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-600 border border-emerald-500/20 mb-4">
                 <Paintbrush className="h-5 w-5" />

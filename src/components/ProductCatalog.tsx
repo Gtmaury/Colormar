@@ -243,7 +243,7 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
               <div
                 key={p.id}
                 onClick={() => handleOpenQuoteModal(p)}
-                className="group flex flex-col justify-between bg-slate-50/50 dark:bg-slate-900/30 border border-slate-250 dark:border-slate-850 rounded-2xl overflow-hidden hover:shadow-lg dark:hover:bg-slate-900/60 hover:border-[#F97316] dark:hover:border-[#FACC15] transition-all duration-300 cursor-pointer text-left"
+                className="group flex flex-col justify-between bg-slate-50/50 dark:bg-slate-900/30 border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden hover:shadow-lg dark:hover:bg-slate-900/60 hover:border-[#F97316] dark:hover:border-[#FACC15] transition-all duration-300 cursor-pointer text-left"
                 id={`cat-card-${p.id}`}
               >
                 {/* Product illustration image with modern zoom hover effect */}
@@ -293,12 +293,12 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
                   </div>
 
                   {/* Stock availability layout (no prices as requested) */}
-                  <div className="pt-3 border-t border-slate-100 dark:border-slate-850 flex justify-between items-end">
+                  <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex justify-between items-end">
                     <div className="text-left leading-none">
                       <p className="text-[10px] uppercase font-mono font-bold text-slate-400 mb-1">
                         {t.catStock}
                       </p>
-                      <span className="text-xs font-mono font-bold text-slate-700 dark:text-slate-350">
+                      <span className="text-xs font-mono font-bold text-slate-700 dark:text-slate-300">
                         {p.stock} {t.catStockUnits}
                       </span>
                     </div>
@@ -335,7 +335,7 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
               </button>
 
               {/* Title modal header */}
-              <div className="flex items-center space-x-3.5 border-b border-slate-150 dark:border-slate-800 pb-4">
+              <div className="flex items-center space-x-3.5 border-b border-slate-200 dark:border-slate-800 pb-4">
                 <ClipboardCheck className="h-7 w-7 text-orange-500 animate-bounce" />
                 <div>
                   <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-none">
@@ -386,7 +386,7 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
                   </p>
 
                   {/* Selected product reference card (static) */}
-                  <div className="bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-slate-850 p-4 rounded-xl flex items-center justify-between">
+                  <div className="bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-slate-800 p-4 rounded-xl flex items-center justify-between">
                     <div>
                       <p className="text-[10px] font-mono text-slate-400 uppercase font-black leading-none mb-1">
                         {t.formSelectedProduct}
@@ -399,7 +399,7 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
                     {selectedProduct.category === 'paints' && (
                       <div className="flex items-center space-x-1.5 px-3 py-1.5 bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 shadow-sm">
                         <span className="h-4 w-4 block rounded shadow-inner" style={{ backgroundColor: selectedColor }} />
-                        <span className="text-xs font-mono font-bold text-slate-600 dark:text-slate-350">{selectedColor}</span>
+                        <span className="text-xs font-mono font-bold text-slate-600 dark:text-slate-300">{selectedColor}</span>
                       </div>
                     )}
                   </div>
@@ -415,7 +415,7 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
                       value={formName}
                       onChange={(e) => setFormName(e.target.value)}
                       placeholder="e.g. Sebastián Colormar"
-                      className="w-full py-3 px-4 text-xs sm:text-sm text-slate-800 dark:text-slate-150 bg-slate-50 dark:bg-slate-950 rounded-xl border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-orange-500"
+                      className="w-full py-3 px-4 text-xs sm:text-sm text-slate-800 dark:text-slate-200 bg-slate-50 dark:bg-slate-950 rounded-xl border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-orange-500"
                     />
                   </div>
 
@@ -431,7 +431,7 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
                         value={formEmail}
                         onChange={(e) => setFormEmail(e.target.value)}
                         placeholder="ejemplo@correo.com"
-                        className="w-full py-3 px-4 text-xs sm:text-sm text-slate-800 dark:text-slate-150 bg-slate-50 dark:bg-slate-950 rounded-xl border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-orange-500"
+                        className="w-full py-3 px-4 text-xs sm:text-sm text-slate-800 dark:text-slate-200 bg-slate-50 dark:bg-slate-950 rounded-xl border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-orange-500"
                       />
                     </div>
                     <div className="space-y-1.5 text-left">
@@ -443,7 +443,7 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
                         value={formPhone}
                         onChange={(e) => setFormPhone(e.target.value)}
                         placeholder="+506 8888-8888"
-                        className="w-full py-3 px-4 text-xs sm:text-sm text-slate-800 dark:text-slate-150 bg-slate-50 dark:bg-slate-950 rounded-xl border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-orange-500"
+                        className="w-full py-3 px-4 text-xs sm:text-sm text-slate-800 dark:text-slate-200 bg-slate-50 dark:bg-slate-950 rounded-xl border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-orange-500"
                       />
                     </div>
                   </div>

@@ -285,7 +285,7 @@ export default function ColorVisualizer({
                 <h4 className="text-xs font-mono font-bold text-slate-400 uppercase tracking-wide leading-none mb-1">
                   {language === 'es' ? 'MATIZ SELECCIONADO:' : 'SELECTED SHADE:'}
                 </h4>
-                <p className="text-sm font-bold font-mono text-slate-800 dark:text-slate-150">
+                <p className="text-sm font-bold font-mono text-slate-800 dark:text-slate-200">
                   {selectedColor}
                 </p>
               </div>
@@ -410,7 +410,7 @@ export default function ColorVisualizer({
               {/* Mixing status indicator block */}
               <div className="pt-3 border-t border-slate-100 dark:border-slate-800 text-[11px] font-mono text-slate-400 flex justify-between items-center">
                 <span>{t.visMixingGlow}</span>
-                <span className="font-bold text-slate-700 dark:text-slate-350 bg-slate-100 dark:bg-slate-950 px-2.5 py-1 rounded-md border border-slate-200 dark:border-slate-800">
+                <span className="font-bold text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-950 px-2.5 py-1 rounded-md border border-slate-200 dark:border-slate-800">
                   rgb({rgb.r}, {rgb.g}, {rgb.b})
                 </span>
               </div>

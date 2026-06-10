@@ -59,7 +59,7 @@ export default function Hero({ language, onScrollToSection, onSelectColor }: Her
             </h1>
 
             {/* Sub-headline */}
-            <p className="font-sans text-sm sm:text-base md:text-lg text-slate-600 dark:text-slate-350 leading-relaxed max-w-2xl">
+            <p className="font-sans text-sm sm:text-base md:text-lg text-slate-600 dark:text-slate-300 leading-relaxed max-w-2xl">
               {t.heroSubtitle}
             </p>
 
