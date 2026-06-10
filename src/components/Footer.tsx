@@ -3,8 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect } from 'react';
-import { Clock, Phone, MapPin, Mail, Globe } from 'lucide-react';
+import React from 'react';
+import { Phone, MapPin, Globe } from 'lucide-react';
 import { Language } from '../types';
 import { TRANSLATIONS } from './translations';
 import ToucanLogo from './ToucanLogo';
@@ -15,17 +15,6 @@ interface FooterProps {
 
 export default function Footer({ language }: FooterProps) {
   const t = TRANSLATIONS[language];
-  const [time, setTime] = useState<string>('');
-
-  useEffect(() => {
-    const updateTime = () => {
-      const now = new Date();
-      setTime(now.toISOString().substring(11, 19) + ' UTC');
-    };
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <footer className="bg-slate-900 border-t border-slate-800 text-slate-400 py-10 transition-colors duration-300">
@@ -42,12 +31,7 @@ export default function Footer({ language }: FooterProps) {
               {t.footDesc}
             </p>
             
-            {/* Live digital clock showing UTC time */}
-            <div className="flex items-center space-x-2 text-[10px] font-mono text-slate-500 pt-3 border-t border-slate-800 max-w-xs">
-              <Clock className="h-3.5 w-3.5 text-slate-500" />
-              <span>CLOCK:</span>
-              <span className="text-slate-300 font-bold">{time || '00:00:00 UTC'}</span>
-            </div>
+
           </div>
 
           {/* Column 2: Operation & Store Hours */}
@@ -75,12 +59,8 @@ export default function Footer({ language }: FooterProps) {
             
             <div className="space-y-2.5">
               <div className="flex items-center space-x-2.5 text-xs">
-                <Mail className="h-4 w-4 text-slate-500" />
-                <span className="font-mono text-slate-300">{t.footContactValue.split(' | ')[0]}</span>
-              </div>
-              <div className="flex items-center space-x-2.5 text-xs">
                 <Phone className="h-4 w-4 text-slate-500" />
-                <span className="font-mono text-slate-300 font-bold">{t.footContactValue.split(' | ')[1]}</span>
+                <span className="font-mono text-slate-300 font-bold">{t.footContactValue}</span>
               </div>
             </div>
 

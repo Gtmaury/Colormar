@@ -126,13 +126,13 @@ export const TRANSLATIONS = {
     consultSuccessDesc: 'Nuestros asesores técnicos en Colormar están listos para guiarte en tu proyecto en nuestra sucursal.',
 
     // Footer
-    footDesc: 'Colormar es la marca de pinturas premium más vibrante, inspirada en la biodiversidad tropical. Formulamos recubrimientos de grado arquitectónico que resisten el paso del tiempo.',
+    footDesc: 'Colormar es el distribuidor autorizado de las mejores marcas de pintura premium, trayendo vida y color a tus espacios con soluciones de grado arquitectónico que resisten el paso del tiempo.',
     footHours: 'Horario de Atención Central:',
-    footHoursValue: 'Lunes a Sábado: 7:30 AM — 6:30 PM (Hora Local)',
+    footHoursValue: 'Lun a Vie: 8:15 AM — 4:00 PM / Sáb: 8:15 AM — 1:00 PM',
     footAddress: 'Dirección:',
     footAddressValue: 'Avenida de los Coloristas No. 500, Sector de Pinturas y Acabados, Zona Comercial',
     footContact: 'Contacto Directo:',
-    footContactValue: 'atencion@colormar-paints.com | Tel: +506 2200-PINTURA',
+    footContactValue: 'WhatsApp: +58 412-4381348',
     footCopyright: '© {year} Colormar Paints & Coatings S.A. Todos los derechos reservados. Desarrollado con tecnología de alta gama.'
   },
   en: {
@@ -257,13 +257,13 @@ export const TRANSLATIONS = {
     consultSuccessDesc: 'Our technical advisors at Colormar are ready to guide you through your project at our retail branch.',
 
     // Footer
-    footDesc: 'Colormar is the most vibrant premium paint brand, deeply inspired by tropical biodiversity. We formulate architectural coverings that proudly withstand the test of time.',
+    footDesc: 'Colormar is the authorized distributor of the finest premium paint brands, bringing life and color to your spaces with architectural-grade solutions that stand the test of time.',
     footHours: 'Central Store Hours:',
-    footHoursValue: 'Monday to Saturday: 7:30 AM — 6:30 PM (Local Time)',
+    footHoursValue: 'Mon to Fri: 8:15 AM — 4:00 PM / Sat: 8:15 AM — 1:00 PM',
     footAddress: 'Headquarters Address:',
     footAddressValue: 'Avenue of the Colorists No. 500, Architectural Paint Section, Main Commercial District',
     footContact: 'Contact Us:',
-    footContactValue: 'atencion@colormar-paints.com | Phone: +506 2200-PINTURA',
+    footContactValue: 'WhatsApp: +58 412-4381348',
     footCopyright: '© {year} Colormar Paints & Coatings S.A. All rights reserved. Rendered with premium precision.'
   }
 };
