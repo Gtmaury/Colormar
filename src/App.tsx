@@ -66,7 +66,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col justify-between selection:bg-orange-500/20 selection:text-orange-600 transition-colors duration-300">
+    <div className="min-h-screen overflow-x-hidden bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col justify-between selection:bg-orange-500/20 selection:text-orange-600 transition-colors duration-300">
       
       {/* 1. Header with brand and language picker */}
       <Header

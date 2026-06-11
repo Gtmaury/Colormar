@@ -87,7 +87,7 @@ export default function Hero({ language, onScrollToSection, onSelectColor }: Her
           </div>
 
           {/* Column 2: Auto-scrolling Showcase Product Carousel (borderless, 3 rows, very compact for viewport fit) */}
-          <div className="lg:col-span-7 flex justify-center w-full">
+          <div className="lg:col-span-7 flex justify-center w-full min-w-0">
             <div 
               className="relative w-full max-w-2xl lg:max-w-none rounded-3xl bg-white/40 dark:bg-slate-900/30 p-4 shadow-xl backdrop-blur-md overflow-hidden"
               style={{
