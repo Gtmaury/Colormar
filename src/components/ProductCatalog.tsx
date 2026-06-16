@@ -4,7 +4,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { ShoppingBag, Star, Sparkles, X, ClipboardCheck } from 'lucide-react';
+import { ShoppingBag, Star, Sparkles, X } from 'lucide-react';
 import { PRODUCTS } from '../data';
 import { Language, Product } from '../types';
 import { TRANSLATIONS } from './translations';
@@ -58,17 +58,8 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
     return () => clearInterval(interval);
   }, [isCarouselHovered]);
   
-  // Quick shop form state
-  const [formName, setFormName] = useState('');
-  const [formEmail, setFormEmail] = useState('');
-  const [formPhone, setFormPhone] = useState('');
+  // Quick shop quantity state
   const [formQty, setFormQty] = useState(2);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [successReceipt, setSuccessReceipt] = useState<{
-    productName: string;
-    qty: number;
-    color: string;
-  } | null>(null);
 
   // Filter items matching selected tab category
   const filteredProducts = PRODUCTS.filter((p) => {
@@ -78,32 +69,35 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
 
   const handleOpenQuoteModal = (product: Product) => {
     setSelectedProduct(product);
-    setSuccessReceipt(null);
+    setFormQty(2); // Reset quantity
   };
 
   const handleCloseModal = () => {
     setSelectedProduct(null);
-    setSuccessReceipt(null);
   };
 
-  const handleSubmitQuote = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formName || !formEmail) return;
-
-    setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSuccessReceipt({
-        productName: selectedProduct ? (language === 'es' ? selectedProduct.nameEs : selectedProduct.nameEn) : '',
-        qty: formQty,
-        color: selectedColor
-      });
-      // Clear form inputs
-      setFormName('');
-      setFormEmail('');
-      setFormPhone('');
-      setFormQty(2);
-    }, 1200);
+  const formatWhatsAppMessage = () => {
+    if (!selectedProduct) return '';
+    const phone = '584124381348';
+    const productName = language === 'es' ? selectedProduct.nameEs : selectedProduct.nameEn;
+    const itemUnit = language === 'es' ? selectedProduct.unitEs : selectedProduct.unitEn;
+    
+    let text = '';
+    if (language === 'es') {
+      text = `Hola Colormar, estoy interesado en adquirir ${formQty} ${formQty > 1 ? 'unidades' : 'unidad'} de "${productName}" (${itemUnit}).`;
+      if (selectedProduct.category === 'paints') {
+        text += ` Específicamente con el color seleccionado: ${selectedColor}.`;
+      }
+      text += ` ¿Me podrían indicar la disponibilidad y precio actual? ¡Gracias!`;
+    } else {
+      text = `Hello Colormar, I am interested in purchasing ${formQty} ${formQty > 1 ? 'units' : 'unit'} of "${productName}" (${itemUnit}).`;
+      if (selectedProduct.category === 'paints') {
+        text += ` Specifically in the selected color: ${selectedColor}.`;
+      }
+      text += ` Could you please let me know the availability and current price? Thank you!`;
+    }
+    
+    return `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
   };
 
   return (
@@ -279,29 +273,15 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
                         <Star className="h-3.5 w-3.5 fill-current" />
                         <span className="font-extrabold ml-1 font-mono text-slate-800 dark:text-slate-200">{p.rating}</span>
                       </div>
-                      <span className="text-slate-400 font-semibold">•</span>
-                      <span className="text-slate-400 font-bold">{p.reviewsCount} {t.catReviews}</span>
                     </div>
 
                     <h3 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white leading-tight group-hover:text-[#F97316] dark:group-hover:text-[#FACC15] transition-colors">
                       {productName}
                     </h3>
 
-                    <p className="text-xs text-slate-500 dark:text-slate-400 leading-normal font-sans line-clamp-2">
+                    <p className="text-xs text-slate-500 dark:text-slate-455 leading-normal font-sans line-clamp-2">
                       {pDescription}
                     </p>
-                  </div>
-
-                  {/* Stock availability layout (no prices as requested) */}
-                  <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex justify-between items-end">
-                    <div className="text-left leading-none">
-                      <p className="text-[10px] uppercase font-mono font-bold text-slate-400 mb-1">
-                        {t.catStock}
-                      </p>
-                      <span className="text-xs font-mono font-bold text-slate-700 dark:text-slate-300">
-                        {p.stock} {t.catStockUnits}
-                      </span>
-                    </div>
                   </div>
 
                   {/* Action trigger quote modal */}
@@ -310,7 +290,7 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
                       e.stopPropagation();
                       handleOpenQuoteModal(p);
                     }}
-                    className="w-full py-2 px-3.5 rounded-lg bg-slate-900 text-white dark:bg-white dark:text-slate-950 font-bold text-xs uppercase tracking-wider hover:bg-[#F97316] dark:hover:bg-[#FACC15] cursor-pointer transition-colors text-center active:scale-95"
+                    className="w-full py-2.5 px-3.5 rounded-lg bg-slate-900 text-white dark:bg-white dark:text-slate-950 font-bold text-xs uppercase tracking-wider hover:bg-[#F97316] dark:hover:bg-[#FACC15] cursor-pointer transition-colors text-center active:scale-95"
                   >
                     {t.catBtnDetails}
                   </button>
@@ -321,174 +301,153 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
           })}
         </div>
 
-        {/* Modal Quotation Box popup overlay inside view frame - Font size scaled up */}
+        {/* Modal E-commerce Product Details Box popup overlay */}
         {selectedProduct && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-fade-in">
-            <div className="relative w-full max-w-md bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 sm:p-6 text-left shadow-2xl space-y-5">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-sm animate-fade-in overflow-y-auto">
+            <div className="relative w-full max-w-4xl bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden my-8">
               
               {/* Corner Close trigger */}
               <button
                 onClick={handleCloseModal}
-                className="absolute top-4 right-4 p-1.5 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer text-slate-400"
+                className="absolute top-4 right-4 z-30 p-2 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition-colors cursor-pointer text-slate-500 dark:text-slate-400"
               >
                 <X className="h-5 w-5" />
               </button>
 
-              {/* Title modal header */}
-              <div className="flex items-center space-x-3.5 border-b border-slate-200 dark:border-slate-800 pb-4">
-                <ClipboardCheck className="h-7 w-7 text-orange-500 animate-bounce" />
-                <div>
-                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white leading-none">
-                    {t.catQuickShopTitle}
-                  </h3>
-                  <p className="text-xs text-slate-400 font-mono mt-2 font-bold uppercase tracking-wider">
-                    {selectedProduct.category.toUpperCase()}
-                  </p>
-                </div>
-              </div>
-
-              {successReceipt ? (
-                /* Ticket sequence confirmation step success */
-                <div className="space-y-5 bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-500/20 rounded-2xl p-5 text-center">
-                  <div className="h-12 w-12 rounded-full bg-emerald-500 text-white flex items-center justify-center mx-auto text-xl font-bold shadow-md shadow-emerald-500/10">
-                    ✓
-                  </div>
-                  <h4 className="text-lg font-black text-emerald-800 dark:text-emerald-400">
-                    {t.formSuccessTitle}
-                  </h4>
-                  <p className="text-sm text-slate-655 dark:text-slate-300 leading-relaxed">
-                    {selectedProduct.category === 'paints' 
-                      ? t.formSuccessDescWithCode
-                        .replace('{qty}', successReceipt.qty.toString())
-                        .replace('{product}', successReceipt.productName)
-                        .replace('{color}', successReceipt.color)
-                        .replace('{hex}', successReceipt.color)
-                      : t.formSuccessDescStandard
-                        .replace('{qty}', successReceipt.qty.toString())
-                        .replace('{product}', successReceipt.productName)
-                    }
-                  </p>
-                  <p className="text-xs font-mono text-slate-455 font-semibold uppercase tracking-wider border-t border-slate-200/50 dark:border-slate-800/50 pt-3">
-                    Solicitud ID: COL-{Math.floor(1000 + Math.random() * 9000)}-{new Date().getFullYear()}
-                  </p>
-                  <button
-                    onClick={handleCloseModal}
-                    className="w-full mt-2 py-3 px-4 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 text-xs sm:text-sm font-bold uppercase tracking-widest transition-colors hover:bg-orange-500"
-                  >
-                    {t.formSuccessBtnReset}
-                  </button>
-                </div>
-              ) : (
-                /* Interactive Request Form inputs formatting standard requirements */
-                <form onSubmit={handleSubmitQuote} className="space-y-4">
-                  <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-                    {t.catQuickShopDesc}
-                  </p>
-
-                  {/* Selected product reference card (static) */}
-                  <div className="bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-slate-800 p-4 rounded-xl flex items-center justify-between">
-                    <div>
-                      <p className="text-[10px] font-mono text-slate-400 uppercase font-black leading-none mb-1">
-                        {t.formSelectedProduct}
-                      </p>
-                      <h4 className="text-sm sm:text-base font-extrabold text-slate-900 dark:text-white leading-tight">
-                        {language === 'es' ? selectedProduct.nameEs : selectedProduct.nameEn}
-                      </h4>
-                    </div>
-                    {/* Selected Paint formula chip on request */}
-                    {selectedProduct.category === 'paints' && (
-                      <div className="flex items-center space-x-1.5 px-3 py-1.5 bg-white dark:bg-slate-900 rounded-lg border border-slate-200 dark:border-slate-800 shadow-sm">
-                        <span className="h-4 w-4 block rounded shadow-inner" style={{ backgroundColor: selectedColor }} />
-                        <span className="text-xs font-mono font-bold text-slate-600 dark:text-slate-300">{selectedColor}</span>
-                      </div>
+              <div className="grid grid-cols-1 md:grid-cols-12">
+                {/* Left Side - Image & Accent color */}
+                <div className="md:col-span-5 bg-slate-50 dark:bg-slate-950 p-6 flex flex-col justify-between border-r border-slate-200/50 dark:border-slate-800/50 relative min-h-[300px]">
+                  <div className="relative aspect-square w-full rounded-2xl overflow-hidden bg-white dark:bg-slate-900 border border-slate-200/40 dark:border-slate-800/40">
+                    <img
+                      src={selectedProduct.image}
+                      alt={language === 'es' ? selectedProduct.nameEs : selectedProduct.nameEn}
+                      className="w-full h-full object-cover"
+                      referrerPolicy="no-referrer"
+                    />
+                    {selectedProduct.featured && (
+                      <span className="absolute top-3.5 left-3.5 bg-gradient-to-r from-red-500 to-orange-500 text-[10px] font-mono font-bold tracking-widest text-white py-1 px-3.5 rounded-full shadow-md uppercase">
+                        {t.catFeatured}
+                      </span>
                     )}
                   </div>
+                  
+                  {/* Selected Color indicator circle for paints inside modal */}
+                  {selectedProduct.category === 'paints' && (
+                    <div className="mt-4 p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/55 dark:border-slate-800/55 space-y-2">
+                      <p className="text-[10px] font-mono font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
+                        {language === 'es' ? 'Color de Pintura Seleccionado' : 'Selected Paint Color'}
+                      </p>
+                      <div className="flex items-center space-x-3">
+                        <span className="h-8 w-8 block rounded-lg shadow-inner border border-slate-200/40 dark:border-slate-800/40" style={{ backgroundColor: selectedColor }} />
+                        <div>
+                          <span className="text-sm font-mono font-black text-slate-800 dark:text-slate-200 uppercase">{selectedColor}</span>
+                          <p className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">
+                            {language === 'es' ? 'Aplicado desde el probador virtual' : 'Applied from virtual visualizer'}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
 
-                  {/* Customer Full Name */}
-                  <div className="space-y-1.5 text-left">
-                    <label className="text-xs sm:text-sm font-bold text-slate-500 dark:text-slate-400">
-                      {t.formName}
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      value={formName}
-                      onChange={(e) => setFormName(e.target.value)}
-                      placeholder="e.g. Sebastián Colormar"
-                      className="w-full py-3 px-4 text-xs sm:text-sm text-slate-800 dark:text-slate-200 bg-slate-50 dark:bg-slate-950 rounded-xl border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-orange-500"
-                    />
+                {/* Right Side - E-commerce Details & Action */}
+                <div className="md:col-span-7 p-6 sm:p-8 flex flex-col justify-between space-y-6 text-left">
+                  <div className="space-y-4">
+                    {/* Category Badge & Star rating */}
+                    <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-150 dark:border-slate-800 pb-3">
+                      <span className="text-xs text-orange-500 font-mono font-bold uppercase tracking-widest">
+                        {selectedProduct.category.toUpperCase()}
+                      </span>
+                      <div className="flex items-center space-x-1 bg-yellow-500/10 dark:bg-yellow-500/5 px-2.5 py-1 rounded-lg text-yellow-500">
+                        <Star className="h-3.5 w-3.5 fill-current" />
+                        <span className="text-xs font-mono font-extrabold">{selectedProduct.rating}</span>
+                      </div>
+                    </div>
+
+                    {/* Product Name */}
+                    <h3 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white leading-tight">
+                      {language === 'es' ? selectedProduct.nameEs : selectedProduct.nameEn}
+                    </h3>
+
+                    {/* Product Description */}
+                    <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-sans font-medium">
+                      {language === 'es' ? selectedProduct.descriptionEs : selectedProduct.descriptionEn}
+                    </p>
+
+                    {/* Unit and stock specs */}
+                    <div className="grid grid-cols-2 gap-4 bg-slate-50 dark:bg-slate-950 p-4 rounded-2xl border border-slate-200/40 dark:border-slate-800/40">
+                      <div>
+                        <p className="text-[10px] font-mono text-slate-400 dark:text-slate-500 uppercase tracking-wider font-bold mb-1">
+                          {language === 'es' ? 'Presentación' : 'Package Unit'}
+                        </p>
+                        <p className="text-sm font-extrabold text-slate-800 dark:text-slate-200">
+                          {language === 'es' ? selectedProduct.unitEs : selectedProduct.unitEn}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-mono text-slate-400 dark:text-slate-500 uppercase tracking-wider font-bold mb-1">
+                          {language === 'es' ? 'Stock Disponible' : 'Stock Available'}
+                        </p>
+                        <p className="text-sm font-extrabold text-emerald-600 dark:text-emerald-400">
+                          {selectedProduct.stock} {language === 'es' ? 'unidades' : 'units'}
+                        </p>
+                      </div>
+                    </div>
                   </div>
 
-                  {/* Customer Email & Phone row */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                    <div className="space-y-1.5 text-left">
-                      <label className="text-xs sm:text-sm font-bold text-slate-500 dark:text-slate-400">
-                        {t.formEmail}
-                      </label>
-                      <input
-                        type="email"
-                        required
-                        value={formEmail}
-                        onChange={(e) => setFormEmail(e.target.value)}
-                        placeholder="ejemplo@correo.com"
-                        className="w-full py-3 px-4 text-xs sm:text-sm text-slate-800 dark:text-slate-200 bg-slate-50 dark:bg-slate-950 rounded-xl border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-orange-500"
-                      />
-                    </div>
-                    <div className="space-y-1.5 text-left">
-                      <label className="text-xs sm:text-sm font-bold text-slate-500 dark:text-slate-400">
-                        {t.formPhone}
-                      </label>
-                      <input
-                        type="tel"
-                        value={formPhone}
-                        onChange={(e) => setFormPhone(e.target.value)}
-                        placeholder="+506 8888-8888"
-                        className="w-full py-3 px-4 text-xs sm:text-sm text-slate-800 dark:text-slate-200 bg-slate-50 dark:bg-slate-950 rounded-xl border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-orange-500"
-                      />
-                    </div>
-                  </div>
+                  {/* Quantity & WhatsApp link */}
+                  <div className="space-y-4 pt-4 border-t border-slate-150 dark:border-slate-800">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                      {/* Quantity Selector */}
+                      <div className="space-y-1.5 flex-1 max-w-[180px]">
+                        <label className="text-xs font-bold text-slate-500 dark:text-slate-400">
+                          {language === 'es' ? 'Cantidad:' : 'Quantity:'}
+                        </label>
+                        <div className="flex items-center space-x-2">
+                          <button
+                            type="button"
+                            onClick={() => setFormQty(q => q > 1 ? q - 1 : 1)}
+                            className="h-10 w-10 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 flex items-center justify-center font-black text-sm rounded-xl cursor-pointer select-none text-slate-600 dark:text-slate-350 transition-colors"
+                          >
+                            -
+                          </button>
+                          <input
+                            type="number"
+                            min="1"
+                            max={selectedProduct.stock}
+                            value={formQty}
+                            onChange={(e) => {
+                              const val = parseInt(e.target.value) || 1;
+                              setFormQty(Math.min(Math.max(val, 1), selectedProduct.stock));
+                            }}
+                            className="w-16 text-center font-mono py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl font-extrabold text-sm focus:outline-none focus:border-orange-500 text-slate-800 dark:text-slate-200"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => setFormQty(q => Math.min(q + 1, selectedProduct.stock))}
+                            className="h-10 w-10 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 flex items-center justify-center font-black text-sm rounded-xl cursor-pointer select-none text-slate-600 dark:text-slate-350 transition-colors"
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
 
-                  {/* Quantity selector input field (no price calculation) */}
-                  <div className="space-y-1.5 text-left">
-                    <label className="text-xs sm:text-sm font-bold text-slate-500 dark:text-slate-400">
-                      {t.formUnitCount}
-                    </label>
-                    <div className="flex items-center space-x-2">
-                      <button
-                        type="button"
-                        onClick={() => setFormQty(q => q > 1 ? q - 1 : 1)}
-                        className="h-10 w-10 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 flex items-center justify-center font-bold text-sm rounded-xl cursor-pointer"
+                      {/* WhatsApp Button */}
+                      <a
+                        href={formatWhatsAppMessage()}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 flex items-center justify-center py-4 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-black text-sm uppercase tracking-wider shadow-lg shadow-emerald-600/20 active:scale-95 transition-all text-center"
                       >
-                        -
-                      </button>
-                      <input
-                        type="number"
-                        min="1"
-                        max="500"
-                        value={formQty}
-                        onChange={(e) => setFormQty(parseInt(e.target.value) || 1)}
-                        className="flex-1 text-center font-mono py-2.5 text-xs sm:text-sm bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl font-extrabold focus:outline-none focus:border-orange-500"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => setFormQty(q => q + 1)}
-                        className="h-10 w-10 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 flex items-center justify-center font-bold text-sm rounded-xl cursor-pointer"
-                      >
-                        +
-                      </button>
+                        <svg className="w-5 h-5 mr-2 fill-current" viewBox="0 0 24 24">
+                          <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.42 9.864-9.864.002-2.637-1.019-5.114-2.877-6.974S14.28 1.082 11.639 1.08c-5.441 0-9.866 4.42-9.871 9.866-.001 1.767.465 3.493 1.348 5.022l-.99 3.615 3.712-.973zm11.536-6.62c-.328-.164-1.94-.957-2.24-1.066-.298-.11-.517-.164-.734.164-.218.328-.844 1.066-1.034 1.284-.19.218-.38.245-.708.082-.328-.164-1.386-.51-2.64-1.627-.975-.87-1.633-1.946-1.824-2.274-.19-.328-.02-.505.143-.668.147-.146.328-.382.492-.573.164-.19.218-.328.328-.546.11-.218.055-.41-.027-.573-.082-.164-.734-1.77-.993-2.399-.253-.614-.516-.532-.708-.541-.184-.009-.395-.01-.606-.01-.211 0-.555.08-.846.395-.29.314-1.11 1.083-1.11 2.64 0 1.558 1.133 3.064 1.29 3.282.16.218 2.228 3.399 5.397 4.764.754.325 1.343.518 1.802.663.757.24 1.448.207 1.993.125.607-.09 1.94-.794 2.213-1.558.272-.764.272-1.42.19-1.558-.08-.137-.298-.218-.626-.382z" />
+                        </svg>
+                        {language === 'es' ? 'Preguntar por WhatsApp' : 'Inquire via WhatsApp'}
+                      </a>
                     </div>
                   </div>
-
-                  {/* Quoting Submit validation Trigger button */}
-                  <button
-                    type="submit"
-                    className="w-full py-4 px-6 rounded-xl bg-slate-900 border border-transparent hover:bg-[#F97316] dark:hover:bg-[#FACC15] text-white dark:bg-white dark:text-slate-900 dark:hover:text-slate-950 font-black text-xs sm:text-sm uppercase cursor-pointer tracking-widest text-center active:scale-95 transition-all"
-                  >
-                    {isSubmitting ? t.formSubmitting : t.formBtnSubmit}
-                  </button>
-
-                </form>
-              )}
+                </div>
+              </div>
 
             </div>
           </div>
