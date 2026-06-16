@@ -19,10 +19,10 @@ const CAROUSEL_SLIDES = [
   },
   {
     image: "/gallery/bedroom.png",
-    titleEs: "Laboratorio Computarizado de Color",
-    titleEn: "Analytical Computer Tinting Lab",
-    descEs: "Garantizamos la réplica espectral exacta de tus muestras con escaneado molecular y tintometría de precisión.",
-    descEn: "We secure an exact color replication of your physical swatch with spectrophotometric scaling."
+    titleEs: "Preparación Computarizada de Color",
+    titleEn: "Computerized Color Mixing",
+    descEs: "Preparamos al instante el color exacto de tu preferencia con tecnología tintométrica digital de alta precisión.",
+    descEn: "We mix the exact shade of your choice instantly using our high-precision computerized tinting technology."
   },
   {
     image: "/gallery/exterior.png",
