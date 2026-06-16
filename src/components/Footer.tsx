@@ -64,13 +64,7 @@ export default function Footer({ language }: FooterProps) {
               </div>
             </div>
 
-            {/* Quality seal badge in footer */}
-            <div className="pt-3 border-t border-slate-800 flex items-center space-x-2">
-              <span className="h-2 w-2 rounded-full bg-gradient-to-r from-red-500 via-orange-500 to-yellow-400 block" />
-              <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest font-extrabold">
-                {language === 'es' ? 'ISO 9001:2015 CERTIFICADO' : 'ISO 9001:2015 CERTIFIED'}
-              </span>
-            </div>
+
           </div>
 
         </div>
