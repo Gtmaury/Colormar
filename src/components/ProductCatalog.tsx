@@ -297,7 +297,7 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
               <div className="grid grid-cols-1 md:grid-cols-12">
                 {/* Left Side - Image */}
                 <div className="md:col-span-6 bg-slate-50 dark:bg-slate-950 p-6 flex flex-col justify-center border-r border-slate-200/50 dark:border-slate-800/50 relative min-h-[350px] md:min-h-[450px]">
-                  <div className="relative w-full h-full aspect-[4/5] md:aspect-auto md:h-[400px] rounded-2xl overflow-hidden bg-white dark:bg-slate-900 border border-slate-200/40 dark:border-slate-800/40 p-4 flex items-center justify-center">
+                  <div className="relative w-full h-full aspect-[4/5] md:aspect-auto md:h-[400px] rounded-2xl overflow-hidden bg-white border border-slate-200/40 dark:border-slate-800/40 p-4 flex items-center justify-center">
                     <img
                       src={selectedProduct.image}
                       alt={language === 'es' ? selectedProduct.nameEs : selectedProduct.nameEn}
