@@ -4,7 +4,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { ShoppingBag, Star, Sparkles, X } from 'lucide-react';
+import { ShoppingBag, Sparkles, X } from 'lucide-react';
 import { PRODUCTS } from '../data';
 import { Language, Product } from '../types';
 import { TRANSLATIONS } from './translations';
@@ -59,7 +59,7 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
   }, [isCarouselHovered]);
   
   // Quick shop quantity state
-  const [formQty, setFormQty] = useState(2);
+  const [formQty, setFormQty] = useState(1);
 
   // Filter items matching selected tab category
   const filteredProducts = PRODUCTS.filter((p) => {
@@ -69,7 +69,7 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
 
   const handleOpenQuoteModal = (product: Product) => {
     setSelectedProduct(product);
-    setFormQty(2); // Reset quantity
+    setFormQty(1); // Reset quantity
   };
 
   const handleCloseModal = () => {
@@ -249,32 +249,12 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     referrerPolicy="no-referrer"
                   />
-                  {p.featured && (
-                    <span className="absolute top-3.5 left-3.5 bg-gradient-to-r from-red-500 to-orange-500 text-[9px] font-mono font-bold tracking-widest text-white py-1 px-3.5 rounded-full shadow-md uppercase">
-                      {t.catFeatured}
-                    </span>
-                  )}
-                  {/* Selected Color indicator circle for paints */}
-                  {p.category === 'paints' && (
-                    <div className="absolute top-3.5 right-3.5 bg-slate-950/85 border border-white/20 hover:scale-105 duration-100 text-white p-1.5 rounded-xl flex items-center space-x-1.5 shadow-md">
-                      <span className="h-3.5 w-3.5 block rounded-md shadow-inner" style={{ backgroundColor: selectedColor }} />
-                      <span className="text-[9px] font-mono font-bold pr-1.5 uppercase">{selectedColor}</span>
-                    </div>
-                  )}
                 </div>
 
                 {/* Product textual details */}
                 <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-4">
                   
                   <div className="space-y-2.5">
-                    {/* Star Rating Row */}
-                    <div className="flex items-center space-x-2 text-xs">
-                      <div className="flex items-center text-yellow-400">
-                        <Star className="h-3.5 w-3.5 fill-current" />
-                        <span className="font-extrabold ml-1 font-mono text-slate-800 dark:text-slate-200">{p.rating}</span>
-                      </div>
-                    </div>
-
                     <h3 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white leading-tight group-hover:text-[#F97316] dark:group-hover:text-[#FACC15] transition-colors">
                       {productName}
                     </h3>
@@ -315,53 +295,26 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
               </button>
 
               <div className="grid grid-cols-1 md:grid-cols-12">
-                {/* Left Side - Image & Accent color */}
-                <div className="md:col-span-5 bg-slate-50 dark:bg-slate-950 p-6 flex flex-col justify-between border-r border-slate-200/50 dark:border-slate-800/50 relative min-h-[300px]">
-                  <div className="relative aspect-square w-full rounded-2xl overflow-hidden bg-white dark:bg-slate-900 border border-slate-200/40 dark:border-slate-800/40">
+                {/* Left Side - Image */}
+                <div className="md:col-span-6 bg-slate-50 dark:bg-slate-950 p-6 flex flex-col justify-center border-r border-slate-200/50 dark:border-slate-800/50 relative min-h-[350px] md:min-h-[450px]">
+                  <div className="relative w-full h-full aspect-[4/5] md:aspect-auto md:h-[400px] rounded-2xl overflow-hidden bg-white dark:bg-slate-900 border border-slate-200/40 dark:border-slate-800/40 p-4 flex items-center justify-center">
                     <img
                       src={selectedProduct.image}
                       alt={language === 'es' ? selectedProduct.nameEs : selectedProduct.nameEn}
-                      className="w-full h-full object-cover"
+                      className="max-w-full max-h-full w-auto h-auto object-contain transition-transform duration-300 hover:scale-105"
                       referrerPolicy="no-referrer"
                     />
-                    {selectedProduct.featured && (
-                      <span className="absolute top-3.5 left-3.5 bg-gradient-to-r from-red-500 to-orange-500 text-[10px] font-mono font-bold tracking-widest text-white py-1 px-3.5 rounded-full shadow-md uppercase">
-                        {t.catFeatured}
-                      </span>
-                    )}
                   </div>
-                  
-                  {/* Selected Color indicator circle for paints inside modal */}
-                  {selectedProduct.category === 'paints' && (
-                    <div className="mt-4 p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/55 dark:border-slate-800/55 space-y-2">
-                      <p className="text-[10px] font-mono font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
-                        {language === 'es' ? 'Color de Pintura Seleccionado' : 'Selected Paint Color'}
-                      </p>
-                      <div className="flex items-center space-x-3">
-                        <span className="h-8 w-8 block rounded-lg shadow-inner border border-slate-200/40 dark:border-slate-800/40" style={{ backgroundColor: selectedColor }} />
-                        <div>
-                          <span className="text-sm font-mono font-black text-slate-800 dark:text-slate-200 uppercase">{selectedColor}</span>
-                          <p className="text-[10px] text-slate-500 dark:text-slate-400 font-medium">
-                            {language === 'es' ? 'Aplicado desde el probador virtual' : 'Applied from virtual visualizer'}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  )}
                 </div>
 
                 {/* Right Side - E-commerce Details & Action */}
-                <div className="md:col-span-7 p-6 sm:p-8 flex flex-col justify-between space-y-6 text-left">
+                <div className="md:col-span-6 p-6 sm:p-8 flex flex-col justify-between space-y-6 text-left">
                   <div className="space-y-4">
-                    {/* Category Badge & Star rating */}
+                    {/* Category Badge */}
                     <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-150 dark:border-slate-800 pb-3">
                       <span className="text-xs text-orange-500 font-mono font-bold uppercase tracking-widest">
                         {selectedProduct.category.toUpperCase()}
                       </span>
-                      <div className="flex items-center space-x-1 bg-yellow-500/10 dark:bg-yellow-500/5 px-2.5 py-1 rounded-lg text-yellow-500">
-                        <Star className="h-3.5 w-3.5 fill-current" />
-                        <span className="text-xs font-mono font-extrabold">{selectedProduct.rating}</span>
-                      </div>
                     </div>
 
                     {/* Product Name */}
@@ -373,26 +326,6 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
                     <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-sans font-medium">
                       {language === 'es' ? selectedProduct.descriptionEs : selectedProduct.descriptionEn}
                     </p>
-
-                    {/* Unit and stock specs */}
-                    <div className="grid grid-cols-2 gap-4 bg-slate-50 dark:bg-slate-950 p-4 rounded-2xl border border-slate-200/40 dark:border-slate-800/40">
-                      <div>
-                        <p className="text-[10px] font-mono text-slate-400 dark:text-slate-500 uppercase tracking-wider font-bold mb-1">
-                          {language === 'es' ? 'Presentación' : 'Package Unit'}
-                        </p>
-                        <p className="text-sm font-extrabold text-slate-800 dark:text-slate-200">
-                          {language === 'es' ? selectedProduct.unitEs : selectedProduct.unitEn}
-                        </p>
-                      </div>
-                      <div>
-                        <p className="text-[10px] font-mono text-slate-400 dark:text-slate-500 uppercase tracking-wider font-bold mb-1">
-                          {language === 'es' ? 'Stock Disponible' : 'Stock Available'}
-                        </p>
-                        <p className="text-sm font-extrabold text-emerald-600 dark:text-emerald-400">
-                          {selectedProduct.stock} {language === 'es' ? 'unidades' : 'units'}
-                        </p>
-                      </div>
-                    </div>
                   </div>
 
                   {/* Quantity & WhatsApp link */}
@@ -420,7 +353,7 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
                               const val = parseInt(e.target.value) || 1;
                               setFormQty(Math.min(Math.max(val, 1), selectedProduct.stock));
                             }}
-                            className="w-16 text-center font-mono py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl font-extrabold text-sm focus:outline-none focus:border-orange-500 text-slate-800 dark:text-slate-200"
+                            className="w-16 text-center font-mono py-2 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl font-extrabold text-sm focus:outline-none focus:border-orange-500 text-slate-800 dark:text-slate-200 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                           />
                           <button
                             type="button"
