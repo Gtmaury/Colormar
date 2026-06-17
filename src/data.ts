@@ -1165,22 +1165,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     stock: 99
   },
-  {
-    id: 'prod-67',
-    nameEs: 'Matrix Paños de Microfibra (3 unidades)',
-    nameEn: 'Matrix Microfiber Cloths (3-Pack)',
-    category: 'paints',
-    descriptionEs: 'Paños suaves y absorbentes para la limpieza de interiores de autos, hogar y oficina.',
-    descriptionEn: 'Soft and absorbent cloths for cleaning car interiors, homes, and offices.',
-    price: 32.36,
-    unitEs: 'Unidad',
-    unitEn: 'Unit',
-    rating: 5.0,
-    reviewsCount: 125,
-    image: '/productIMG/20260302_132646.jpg',
-    featured: false,
-    stock: 72
-  },
+
   {
     id: 'prod-68',
     nameEs: 'PPV Class Pintura de Esmalte Negro',
