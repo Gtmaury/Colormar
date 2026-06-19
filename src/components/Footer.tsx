@@ -70,9 +70,19 @@ export default function Footer({ language }: FooterProps) {
         </div>
 
         {/* Lower Row Copyright details */}
-        <div className="flex flex-col sm:flex-row items-center justify-between pt-8 text-[11px] font-mono text-slate-600 uppercase text-center sm:text-left">
+        <div className="flex flex-col sm:flex-row items-center justify-between pt-8 text-[11px] font-mono text-slate-600 uppercase text-center sm:text-left gap-4">
           <div>
             {t.footCopyright.replace('{year}', new Date().getFullYear().toString())}
+          </div>
+          <div>
+            <a 
+              href="https://www.facebook.com/profile.php?id=61579430716220" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="hover:text-[#F97316] transition-colors font-bold normal-case text-slate-500"
+            >
+              {language === 'es' ? 'Creado por Mauricio González' : 'Created by Mauricio González'}
+            </a>
           </div>
         </div>
 
