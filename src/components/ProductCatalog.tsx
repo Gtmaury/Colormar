@@ -310,12 +310,7 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
                 {/* Right Side - E-commerce Details & Action */}
                 <div className="md:col-span-6 p-6 sm:p-8 flex flex-col justify-between space-y-6 text-left">
                   <div className="space-y-4">
-                    {/* Category Badge */}
-                    <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-150 dark:border-slate-800 pb-3">
-                      <span className="text-xs text-orange-500 font-mono font-bold uppercase tracking-widest">
-                        {selectedProduct.category.toUpperCase()}
-                      </span>
-                    </div>
+
 
                     {/* Product Name */}
                     <h3 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white leading-tight">
