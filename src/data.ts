@@ -765,22 +765,7 @@ export const PRODUCTS: Product[] = [
     featured: false,
     stock: 70
   },
-  {
-    id: 'prod-42',
-    nameEs: 'Paños de Microfibra Multiusos (3 unidades)',
-    nameEn: 'All-Purpose Microfiber Cloths (3-Pack)',
-    category: 'paints',
-    descriptionEs: 'Paños suaves y absorbentes para la limpieza de interiores de autos, hogar y oficina.',
-    descriptionEn: 'Soft and absorbent cloths for cleaning car interiors, homes, and offices.',
-    price: 50.42,
-    unitEs: 'Unidad',
-    unitEn: 'Unit',
-    rating: 4.4,
-    reviewsCount: 159,
-    image: '/productIMG/1772847267675.png',
-    featured: false,
-    stock: 82
-  },
+
   {
     id: 'prod-43',
     nameEs: 'Matrix Paños de Microfibra (3 Bolsillos)',
