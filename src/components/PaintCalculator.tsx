@@ -80,11 +80,11 @@ export default function PaintCalculator({ language }: PaintCalculatorProps) {
         
         {/* Title details */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-12">
-          <div className="inline-flex items-center space-x-1 border border-orange-500/10 bg-orange-500/5 px-3 py-1 rounded-full text-xs text-[#EA580C] dark:text-orange-400 font-mono">
-            <Calculator className="h-3.5 w-3.5" />
+          <div className="inline-flex items-center space-x-2 border border-orange-500/10 bg-orange-500/5 px-3 py-1.5 rounded-full text-xs text-[#EA580C] dark:text-orange-400 font-mono mb-2">
+            <Calculator className="h-4 w-4" />
             <span className="uppercase font-bold tracking-widest">{language === 'es' ? 'Calculadora' : 'Calculator'}</span>
           </div>
-          <h2 className="text-2xl font-black md:text-3xl lg:text-4xl tracking-tight leading-none text-slate-900 dark:text-white">
+          <h2 className="text-2xl font-black md:text-3xl lg:text-4xl tracking-tight leading-tight text-slate-900 dark:text-white">
             {t.calcTitle}
           </h2>
           <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">

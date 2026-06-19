@@ -50,9 +50,9 @@ export default function Waitlist({ language, selectedColor }: WaitlistProps) {
         
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center mb-6 lg:mb-8 space-y-4">
-          <div className="inline-flex items-center space-x-2 rounded-full border border-orange-500/20 bg-orange-50 dark:bg-orange-950/20 px-3 py-1.5 text-xs text-[#EA580C] dark:text-orange-400 font-bold">
+          <div className="inline-flex items-center space-x-2 border border-orange-500/10 bg-orange-500/5 px-3 py-1.5 rounded-full text-xs text-[#EA580C] dark:text-orange-400 font-mono mb-2">
             <Sparkles className="h-4 w-4" />
-            <span className="uppercase font-mono tracking-widest">
+            <span className="uppercase font-bold tracking-widest">
               {language === 'es' ? 'El Buen Servicio Colormar' : 'The Colormar Good Service'}
             </span>
           </div>

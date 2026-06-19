@@ -106,7 +106,7 @@ export default function ProductCatalog({ language, selectedColor, onScrollToSect
         
         {/* Header content section - Font size scaled up */}
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-10">
-          <div className="inline-flex items-center space-x-2 border border-orange-500/10 bg-orange-500/5 px-3 py-1.5 rounded-full text-xs text-[#EA580C] dark:text-orange-400 font-mono">
+          <div className="inline-flex items-center space-x-2 border border-orange-500/10 bg-orange-500/5 px-3 py-1.5 rounded-full text-xs text-[#EA580C] dark:text-orange-400 font-mono mb-2">
             <ShoppingBag className="h-4 w-4" />
             <span className="uppercase font-bold tracking-widest">{language === 'es' ? 'Catálogo de Insumos y Pinturas' : 'Product & Materials Catalog'}</span>
           </div>

@@ -27,9 +27,12 @@ export default function FAQ({ language }: FAQProps) {
         
         {/* Section Title */}
         <div className="text-center max-w-3xl mx-auto mb-6 lg:mb-8 space-y-4">
-          <span className="text-xs font-mono tracking-widest text-[#F97316] uppercase font-bold bg-orange-50 dark:bg-orange-950/20 px-3.5 py-1.5 rounded-full border border-orange-500/20">
-            {language === 'es' ? 'Centro de ayuda' : 'Help center'}
-          </span>
+          <div className="inline-flex items-center space-x-2 border border-orange-500/10 bg-orange-500/5 px-3 py-1.5 rounded-full text-xs text-[#EA580C] dark:text-orange-400 font-mono mb-2">
+            <HelpCircle className="h-4 w-4" />
+            <span className="uppercase font-bold tracking-widest">
+              {language === 'es' ? 'Centro de ayuda' : 'Help center'}
+            </span>
+          </div>
           <h2 className="text-2xl font-black text-slate-900 dark:text-white sm:text-3xl lg:text-4xl tracking-tight leading-none">
             {t.faqTitle}
           </h2>

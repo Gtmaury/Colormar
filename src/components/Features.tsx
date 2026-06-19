@@ -52,9 +52,12 @@ export default function Features({ language }: FeaturesProps) {
         
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center mb-6 lg:mb-8 space-y-4">
-          <span className="text-xs md:text-sm font-mono tracking-widest text-[#F97316] uppercase font-bold bg-orange-50 dark:bg-orange-950/20 px-3 py-1.5 rounded-full border border-orange-500/20">
-            {language === 'es' ? 'Marcas y Servicios Especializados' : 'Specialized Brands & Services'}
-          </span>
+          <div className="inline-flex items-center space-x-2 border border-orange-500/10 bg-orange-500/5 px-3 py-1.5 rounded-full text-xs text-[#EA580C] dark:text-orange-400 font-mono mb-2">
+            <Paintbrush className="h-4 w-4" />
+            <span className="uppercase font-bold tracking-widest">
+              {language === 'es' ? 'Marcas y Servicios Especializados' : 'Specialized Brands & Services'}
+            </span>
+          </div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
             {t.featTitle}
           </h2>
